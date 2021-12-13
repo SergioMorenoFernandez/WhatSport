@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  whatsport.api:
+    image: ${DOCKER_REGISTRY-}whatsportapi
+    build:
+      context: .
+      dockerfile: WhatSport.Api/Dockerfile
+
+  db:
+    container_name: db-mssql
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Welcome123!
+    ports:
+      - '1433:1433'
