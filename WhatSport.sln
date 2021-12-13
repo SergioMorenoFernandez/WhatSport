@@ -3,12 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\Persistence.csproj", "{CA2FB9CD-4ABF-475D-A854-4CEB7DBC1E43}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{BA0421D5-0BA0-46B1-BDA7-63E396A09B37}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DOM", "DOM\DOM.csproj", "{FF2B4412-0FFC-488C-BFC5-3C9A43495BFF}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhatSport.Domain", "WhatSport.Domain\WhatSport.Domain.csproj", "{46F15050-8442-4975-A9B5-27232B805904}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhatSport.Infrastructure", "WhatSport.Infrastructure\WhatSport.Infrastructure.csproj", "{985AACE2-5890-4160-A51A-7D03AE05F75F}"
@@ -19,28 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhatSport.Api", "WhatSport.
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C60DF2FB-A282-44BA-AFCB-505D26D6E548}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{D60E9C9C-06AB-4986-A593-C02125F50B1C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "old", "old", "{29512C0F-0D42-44BD-B6DB-74E841809234}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CA2FB9CD-4ABF-475D-A854-4CEB7DBC1E43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA2FB9CD-4ABF-475D-A854-4CEB7DBC1E43}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA2FB9CD-4ABF-475D-A854-4CEB7DBC1E43}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CA2FB9CD-4ABF-475D-A854-4CEB7DBC1E43}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BA0421D5-0BA0-46B1-BDA7-63E396A09B37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA0421D5-0BA0-46B1-BDA7-63E396A09B37}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA0421D5-0BA0-46B1-BDA7-63E396A09B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA0421D5-0BA0-46B1-BDA7-63E396A09B37}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FF2B4412-0FFC-488C-BFC5-3C9A43495BFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF2B4412-0FFC-488C-BFC5-3C9A43495BFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF2B4412-0FFC-488C-BFC5-3C9A43495BFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF2B4412-0FFC-488C-BFC5-3C9A43495BFF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{46F15050-8442-4975-A9B5-27232B805904}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{46F15050-8442-4975-A9B5-27232B805904}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46F15050-8442-4975-A9B5-27232B805904}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -61,19 +39,9 @@ Global
 		{C60DF2FB-A282-44BA-AFCB-505D26D6E548}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C60DF2FB-A282-44BA-AFCB-505D26D6E548}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C60DF2FB-A282-44BA-AFCB-505D26D6E548}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D60E9C9C-06AB-4986-A593-C02125F50B1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D60E9C9C-06AB-4986-A593-C02125F50B1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D60E9C9C-06AB-4986-A593-C02125F50B1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D60E9C9C-06AB-4986-A593-C02125F50B1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{CA2FB9CD-4ABF-475D-A854-4CEB7DBC1E43} = {29512C0F-0D42-44BD-B6DB-74E841809234}
-		{BA0421D5-0BA0-46B1-BDA7-63E396A09B37} = {29512C0F-0D42-44BD-B6DB-74E841809234}
-		{FF2B4412-0FFC-488C-BFC5-3C9A43495BFF} = {29512C0F-0D42-44BD-B6DB-74E841809234}
-		{D60E9C9C-06AB-4986-A593-C02125F50B1C} = {29512C0F-0D42-44BD-B6DB-74E841809234}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AFBF25B1-F793-4AA6-9D82-390734A0A4A8}

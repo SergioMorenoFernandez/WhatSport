@@ -5,20 +5,34 @@
       </h3>
     </header>
     <p>
-      <strong>Token:</strong>
-      {{ currentUser.accessToken.substring(0, 20) }} ...
-      {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
+      <strong>id:</strong>
+      {{ currentUser.id }} 
     </p>
     <p>
-      <strong>Email:</strong>
-      {{ currentUser.email }}
+      <strong>Name:</strong>
+      {{ currentUser.name }}
     </p>
-    <strong>Roles:</strong>
+    <p>
+      <strong>LastName:</strong>
+      {{ currentUser.lastName }}
+    </p>
+    <p>
+      <strong>Role:</strong>
+      {{ currentUser.role }}
+    </p>
+    <!-- <strong>Role:</strong>
     <ul>
-      <li *ngFor="let role of currentUser.roles">
+      <li *ngFor="let role of currentUser.role">
         {{ role }}
       </li>
-    </ul>
+    </ul> -->
+
+     <label for="hero-name">Total matches: </label> 
+    <!--<input id="hero-name" [(ngModel)]="hero.name" placeholder="Hero name"/>-->
+
+
+    <label for="hero-name">Total friends: </label>
+    <!-- <input id="hero-name" [(ngModel)]="hero.name" placeholder="Hero name"/> -->
   </div>
   
   <ng-template #loggedOut>

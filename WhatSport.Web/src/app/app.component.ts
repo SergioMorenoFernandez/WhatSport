@@ -8,10 +8,9 @@ import { TokenStorageService } from './services/token-storage.service';
 })
 export class AppComponent {
   title = 'WhatSport.Web';
-  private roles: string[] = [];
+  private role: string = "";
   isLoggedIn = false;
   showAdminBoard = false;
-  showModeratorBoard = false;
   username?: string;
 
   constructor(private tokenStorageService: TokenStorageService) { }
@@ -21,12 +20,11 @@ export class AppComponent {
 
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
+      this.role = user.role;
 
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+      this.showAdminBoard = this.role==='Admin';
 
-      this.username = user.username;
+      this.username = user.login;
     }
   }
 
