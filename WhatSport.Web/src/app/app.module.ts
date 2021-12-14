@@ -15,6 +15,10 @@ import { BoardUserComponent } from './board-user/board-user.component';
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { SearchMatchesComponent } from './search-matches/search-matches.component';
+import { NavigationComponent } from './shared/header/navigation/navigation.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { FullComponent } from './layout/full/full.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +29,10 @@ import { SearchMatchesComponent } from './search-matches/search-matches.componen
     ProfileComponent,
     BoardAdminComponent,
     BoardUserComponent,
-    SearchMatchesComponent
+    SearchMatchesComponent,
+    NavigationComponent,
+    SidebarComponent,
+    FullComponent
   ],
   imports: [
     BrowserModule,

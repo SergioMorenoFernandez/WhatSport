@@ -8,7 +8,13 @@ import { ProfileComponent } from './profile/profile.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 
+import { FullComponent } from './layout/full/full.component';
+
 const routes: Routes = [
+  {
+  path: '',
+  component: FullComponent,
+  children: [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -16,6 +22,11 @@ const routes: Routes = [
   { path: 'user', component: BoardUserComponent },
   { path: 'admin', component: BoardAdminComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
+]},
+{
+  path: '**',
+  redirectTo: '/starter'
+}
 ];
 
 @NgModule({
