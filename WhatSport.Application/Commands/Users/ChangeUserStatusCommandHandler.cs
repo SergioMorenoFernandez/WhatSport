@@ -5,22 +5,22 @@ namespace WhatSport.Application.Commands.Users
 {
     internal class ChangeUserStatusCommandHandler : IRequestHandler<ChangeUserStatusCommand, bool>
     {
-        private readonly IUserRepository userRepository;
+        private readonly IUserRepository repository;
 
-        public ChangeUserStatusCommandHandler(IUserRepository userRepository)
+        public ChangeUserStatusCommandHandler(IUserRepository repository)
         {
-            this.userRepository = userRepository;
+            this.repository = repository;
         }
 
         public async Task<bool> Handle(ChangeUserStatusCommand request, CancellationToken cancellationToken)
         {
-            var user = await userRepository.GetUserByIdAsync(request.UserId, cancellationToken);
+            var user = await repository.GetUserByIdAsync(request.UserId, cancellationToken);
 
             user.Status = request.NewStatus;
 
-            userRepository.UpdateUser(user);
+            repository.UpdateUser(user);
 
-            return await userRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
+            return await repository.UnitOfWork.SaveChangesAsync(cancellationToken);
         }
     }
 }

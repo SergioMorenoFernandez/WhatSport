@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using WhatSport.Domain;
@@ -21,6 +22,10 @@ namespace WhatSport.Infrastructure.Repositories
         public async Task<User> GetUserByIdAsync(int id, CancellationToken cancellationToken = default)
         {
             return await context.Users.AsNoTracking().SingleAsync(u => u.Id == id, cancellationToken);
+        }
+        public async Task<IEnumerable<User>> GetUserAsync(CancellationToken cancellationToken = default)
+        {
+            return await context.Users.AsNoTracking().ToListAsync(cancellationToken);
         }
 
         public async Task<User?> GetUserByLoginAsync(string login, CancellationToken cancellationToken = default)

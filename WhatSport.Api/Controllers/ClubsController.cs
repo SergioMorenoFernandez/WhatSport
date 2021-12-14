@@ -25,40 +25,42 @@ namespace WhatSport.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<Club[]>> GetAll()
         {
-            var clubsQuery = new ClubsQuery();
+            var query = new ClubsQuery();
 
             logger.LogInformation(
                "----- Sending command: {CommandName}: ({@Command})",
-               clubsQuery.GetGenericTypeName(),
-               clubsQuery);
+               query.GetGenericTypeName(),
+               query);
 
-            return await mediator.Send(clubsQuery);
+            return await mediator.Send(query);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Club>> GetById([FromRoute] ClubByIdQuery clubByIdQuery)
+        public async Task<ActionResult<Club>> GetById([FromRoute] int id)
         {
+            var query = new ClubByIdQuery(id);
+
             logger.LogInformation(
                "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
-               clubByIdQuery.GetGenericTypeName(),
-               nameof(clubByIdQuery.Id),
-               clubByIdQuery.Id,
-               clubByIdQuery);
+               query.GetGenericTypeName(),
+               nameof(query.Id),
+               query.Id,
+               query);
 
-            return await mediator.Send(clubByIdQuery);
+            return await mediator.Send(query);
         }
 
         [HttpPost]
-        public async Task<ActionResult<bool>> Post([FromBody] CreateClubCommand createClubCommand)
+        public async Task<ActionResult<bool>> Post([FromBody] CreateClubCommand command)
         {
             logger.LogInformation(
                "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
-               createClubCommand.GetGenericTypeName(),
-               nameof(createClubCommand.Name),
-               createClubCommand.Name,
-               createClubCommand);
+               command.GetGenericTypeName(),
+               nameof(command.Name),
+               command.Name,
+               command);
 
-            return await mediator.Send(createClubCommand);
+            return await mediator.Send(command);
         }
     }
 }

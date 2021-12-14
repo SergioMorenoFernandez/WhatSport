@@ -6,16 +6,16 @@ namespace WhatSport.Application.Queries.Countries
 {
     public class CountryByIdQueryHandler : IRequestHandler<CountryByIdQuery, Country>
     {
-        private readonly ICountryRepository countryRepository;
+        private readonly ICountryRepository repository;
 
-        public CountryByIdQueryHandler(ICountryRepository countryRepository)
+        public CountryByIdQueryHandler(ICountryRepository repository)
         {
-            this.countryRepository = countryRepository;
+            this.repository = repository;
         }
 
         public async Task<Country> Handle(CountryByIdQuery request, CancellationToken cancellationToken)
         {
-            var country = await countryRepository.GetCountryByIdAsync(request.Id, cancellationToken);
+            var country = await repository.GetCountryByIdAsync(request.Id, cancellationToken);
 
             return new Country(country);
         }

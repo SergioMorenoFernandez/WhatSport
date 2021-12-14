@@ -47,30 +47,57 @@ namespace WhatSport.Api.Controllers
         public async Task<ActionResult<User>> Get()
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
-            var userByIdQuery = new UserByIdQuery(userId);
+            var query = new UserByIdQuery(userId);
             
             logger.LogInformation(
                 "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
-                userByIdQuery.GetGenericTypeName(),
-                nameof(userByIdQuery.Id),
-                userByIdQuery.Id,
-                userByIdQuery);
+                query.GetGenericTypeName(),
+                nameof(query.Id),
+                query.Id,
+                query);
 
-            return await mediator.Send(userByIdQuery);
+            return await mediator.Send(query);
+        }
+
+        [HttpGet("Friend")]
+        public async Task<ActionResult<User[]>> GetFriends()
+        {
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+            var query = new UserQuery();
+
+            logger.LogInformation(
+               "----- Sending command: {CommandName}: ({@Command})",
+               query.GetGenericTypeName(),
+               query);
+
+            return await mediator.Send(query);
+        }
+
+        [HttpGet("GetAll")]
+        public async Task<ActionResult<User[]>> GetAll()
+        {
+            var query = new UserQuery();
+
+            logger.LogInformation(
+               "----- Sending command: {CommandName}: ({@Command})",
+               query.GetGenericTypeName(),
+               query);
+
+            return await mediator.Send(query);
         }
 
         [HttpPut("ChangeStatus")]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<bool>> ChangeUserStatus([FromBody] ChangeUserStatusCommand changeUserStatusCommand)
+        public async Task<ActionResult<bool>> ChangeUserStatus([FromBody] ChangeUserStatusCommand command)
         {
             logger.LogInformation(
                 "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
-                changeUserStatusCommand.GetGenericTypeName(),
-                nameof(changeUserStatusCommand.UserId),
-                changeUserStatusCommand.UserId,
-                changeUserStatusCommand);
+                command.GetGenericTypeName(),
+                nameof(command.UserId),
+                command.UserId,
+                command);
 
-            return await mediator.Send(changeUserStatusCommand);
+            return await mediator.Send(command);
         }
 
         private string GenerateJwtToken(User user)

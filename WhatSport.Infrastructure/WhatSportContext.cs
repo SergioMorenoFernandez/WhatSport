@@ -49,6 +49,10 @@ namespace WhatSport.Infrastructure
             CitySeeder.Seed(modelBuilder);
             UserSeeder.Seed(modelBuilder);
             SportSeeder.Seed(modelBuilder);
+            MatchSeeder.Seed(modelBuilder);
+            PlayerSeeder.Seed(modelBuilder);
+            ScoreSeeder.Seed(modelBuilder);
+            ScoreConfirmationSeeder.Seed(modelBuilder);
         }
 
         async Task<bool> IUnitOfWork.SaveChangesAsync(CancellationToken cancellationToken)

@@ -26,16 +26,16 @@ namespace WhatSport.Api.Controllers
         public async Task<ActionResult<Level[]>> GetUserLevels()
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
-            var getUserLevelsQuery = new GetUserLevelsQuery(userId);
+            var query = new GetUserLevelsQuery(userId);
 
             logger.LogInformation(
                "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
-               getUserLevelsQuery.GetGenericTypeName(),
-               nameof(getUserLevelsQuery.UserId),
-               getUserLevelsQuery.UserId,
-               getUserLevelsQuery);
+               query.GetGenericTypeName(),
+               nameof(query.UserId),
+               query.UserId,
+               query);
 
-            return await mediator.Send(getUserLevelsQuery);
+            return await mediator.Send(query);
         }
     }
 }

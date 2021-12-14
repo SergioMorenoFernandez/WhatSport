@@ -6,16 +6,16 @@ namespace WhatSport.Application.Queries.Clubs
 {
     internal class ClubByIdQueryHandler : IRequestHandler<ClubByIdQuery, Club>
     {
-        private readonly IClubRepository clubRepository;
+        private readonly IClubRepository repository;
 
-        public ClubByIdQueryHandler(IClubRepository clubRepository)
+        public ClubByIdQueryHandler(IClubRepository repository)
         {
-            this.clubRepository = clubRepository;
+            this.repository = repository;
         }
 
         public async Task<Club> Handle(ClubByIdQuery request, CancellationToken cancellationToken)
         {
-            var club = await clubRepository.GetClubByIdAsync(request.Id, cancellationToken);
+            var club = await repository.GetClubByIdAsync(request.Id, cancellationToken);
 
             return new Club(club);
         }

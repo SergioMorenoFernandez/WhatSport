@@ -13,8 +13,11 @@ namespace WhatSport.Domain.Models
 
         public int SportId { get; set; }
         public Sport? Sport { get; set; }
-        public int ClubId { get; set; }
+        public int? ClubId { get; set; }
         public Club? Club { get; set; }
+
+        public int? CityId { get; set; }
+        public City? City { get; set; }
 
         public IEnumerable<Score> Scores { get; set; } = new List<Score>();
         public IEnumerable<Player> Players { get; set; } = new List<Player>();

@@ -3,13 +3,13 @@ using WhatSport.Application.Models;
 
 namespace WhatSport.Application.Queries.Cities
 {
-    public class CountryByIdQuery : IRequest<City>
+    public class CityByIdQuery : IRequest<City>
     {
-        public CountryByIdQuery(int id)
+        public CityByIdQuery(int id)
         {
             Id = id;
         }
 
-        public int Id { get; }
+        public int Id { get; set; }
     }
 }

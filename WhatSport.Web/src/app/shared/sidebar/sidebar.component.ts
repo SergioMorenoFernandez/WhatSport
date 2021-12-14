@@ -2,8 +2,9 @@ import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { ROUTES } from './menu-items';
 import { RouteInfo } from './sidebar.metadata';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { TokenStorageService } from '../../services/token-storage.service';
+import { TokenStorageService } from '../../services/tokenStorage/token-storage.service';
 
 //declare var $: any;
 
@@ -18,7 +19,6 @@ export class SidebarComponent implements OnInit {
   role: string = "";
   isLoggedIn = false;
   showAdminBoard = false;
-  username?: string;
 
 
   public sidebarnavItems:RouteInfo[]=[];
@@ -32,6 +32,7 @@ export class SidebarComponent implements OnInit {
   }
 
   constructor(
+    private modalService: NgbModal,
     private router: Router,
     private route: ActivatedRoute,
     private tokenStorageService: TokenStorageService
@@ -40,17 +41,13 @@ export class SidebarComponent implements OnInit {
   // End open close
   ngOnInit() {
     this.sidebarnavItems = ROUTES.filter(sidebarnavItem => sidebarnavItem);
-    
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
-      this.role = user.role;
+      this.role = user?.role;
 
       this.showAdminBoard = this.role==='Admin';
-
-      this.username = user.login;
     }
-
   }
 }

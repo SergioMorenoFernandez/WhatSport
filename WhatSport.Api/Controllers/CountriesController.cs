@@ -25,40 +25,42 @@ namespace WhatSport.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<Country[]>> GetAll()
         {
-            var countriesQuery = new CountriesQuery();
+            var query = new CountriesQuery();
 
             logger.LogInformation(
                "----- Sending command: {CommandName}: ({@Command})",
-               countriesQuery.GetGenericTypeName(),
-               countriesQuery);
+               query.GetGenericTypeName(),
+               query);
 
-            return await mediator.Send(countriesQuery);
+            return await mediator.Send(query);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Country>> GetById([FromRoute] CountryByIdQuery countryByIdQuery)
+        public async Task<ActionResult<Country>> GetById([FromRoute] int id)
         {
+            var query = new CountryByIdQuery(id);
+
             logger.LogInformation(
                "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
-               countryByIdQuery.GetGenericTypeName(),
-               nameof(countryByIdQuery.Id),
-               countryByIdQuery.Id,
-               countryByIdQuery);
+               query.GetGenericTypeName(),
+               nameof(query.Id),
+               query.Id,
+               query);
 
-            return await mediator.Send(countryByIdQuery);
+            return await mediator.Send(query);
         }
 
         [HttpPost]
-        public async Task<ActionResult<bool>> Post([FromBody] CreateCountryCommand createCountryCommand)
+        public async Task<ActionResult<bool>> Post([FromBody] CreateCountryCommand command)
         {
             logger.LogInformation(
                "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
-               createCountryCommand.GetGenericTypeName(),
-               nameof(createCountryCommand.Name),
-               createCountryCommand.Name,
-               createCountryCommand);
+               command.GetGenericTypeName(),
+               nameof(command.Name),
+               command.Name,
+               command);
 
-            return await mediator.Send(createCountryCommand);
+            return await mediator.Send(command);
         }
     }
 }

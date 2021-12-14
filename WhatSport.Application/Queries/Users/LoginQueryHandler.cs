@@ -7,16 +7,16 @@ namespace WhatSport.Application.Queries.Users
 {
     internal class LoginQueryHandler : IRequestHandler<LoginQuery, User>
     {
-        private readonly IUserRepository userRepository;
+        private readonly IUserRepository repository;
 
-        public LoginQueryHandler(IUserRepository userRepository)
+        public LoginQueryHandler(IUserRepository repository)
         {
-            this.userRepository = userRepository;
+            this.repository = repository;
         }
 
         public async Task<User> Handle(LoginQuery request, CancellationToken cancellationToken)
         {
-            var user = await userRepository.GetUserByLoginAsync(request.Login, cancellationToken);
+            var user = await repository.GetUserByLoginAsync(request.Login, cancellationToken);
 
             if (user == null || !user.Password.Equals(request.Password.GetMd5Hash()) || !user.Status)
                 throw new UnauthorizedAccessException();

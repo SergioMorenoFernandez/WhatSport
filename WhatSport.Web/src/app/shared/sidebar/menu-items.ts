@@ -3,48 +3,35 @@ import { RouteInfo } from './sidebar.metadata';
 export const ROUTES: RouteInfo[] = [
  
   {
-    path: '/city',
-    title: 'City',
+    path: '/dashboard',
+    title: 'Dashboard',
     icon: 'bi bi-speedometer2',
     class: '',
     extralink: false,
-    submenu: [],
-    role: ['admin']
+    submenu: []
   },
   {
-    path: '/contry',
-    title: 'Country',
-    icon: 'bi bi-speedometer2',
-    class: '',
-    extralink: false,
-    submenu: [],
-    role: ['admin']
-  },
-  {
-    path: '/club/',
+    path: '/component/club',
     title: 'Club',
-    icon: 'bi bi-bell',
-    class: '',
-    extralink: false,
-    submenu: [],
-    role: ['admin','user']
-  },
-  {
-    path: '/match/',
-    title: 'Matche',
     icon: 'bi bi-patch-check',
     class: '',
     extralink: false,
-    submenu: [],
-    role: ['admin','user']
+    submenu: []
   },
   {
-    path: '/friend',
+    path: '/component/match',
+    title: 'Match',
+    icon: 'bi bi-menu-app',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
+    path: '/component/friends',
     title: 'Friend',
     icon: 'bi bi-people',
     class: '',
     extralink: false,
-    submenu: [],
-    role: ['admin','user']
+    submenu: []
   }
 ];

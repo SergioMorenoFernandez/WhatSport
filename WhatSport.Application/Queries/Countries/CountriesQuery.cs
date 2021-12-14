@@ -5,5 +5,8 @@ namespace WhatSport.Application.Queries.Countries
 {
     public class CountriesQuery : IRequest<Country[]>
     {
+        public CountriesQuery()
+        {
+        }
     }
 }

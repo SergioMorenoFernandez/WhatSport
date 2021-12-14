@@ -4,13 +4,13 @@ using WhatSport.Domain.Repositories;
 
 namespace WhatSport.Application.Commands.Cities
 {
-    public class CreateCountryCommandHandler : IRequestHandler<CreateCityCommand, bool>
+    public class CreateCityCommandHandler : IRequestHandler<CreateCityCommand, bool>
     {
-        private readonly ICityRepository cityRepository;
+        private readonly ICityRepository repository;
 
-        public CreateCountryCommandHandler(ICityRepository cityRepository)
+        public CreateCityCommandHandler(ICityRepository repository)
         {
-            this.cityRepository = cityRepository;
+            this.repository = repository;
         }
 
         public async Task<bool> Handle(CreateCityCommand request, CancellationToken cancellationToken)
@@ -21,9 +21,9 @@ namespace WhatSport.Application.Commands.Cities
                 CountryId = request.CountryId,
             };
 
-            await cityRepository.AddCityAsync(city, cancellationToken);
+            await repository.AddCityAsync(city, cancellationToken);
 
-            return await cityRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
+            return await repository.UnitOfWork.SaveChangesAsync(cancellationToken);
         }
     }
 }

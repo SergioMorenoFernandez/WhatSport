@@ -6,11 +6,11 @@ namespace WhatSport.Application.Commands.Clubs
 {
     internal class CreateClubCommandHandler : IRequestHandler<CreateClubCommand, bool>
     {
-        private readonly IClubRepository clubRepository;
+        private readonly IClubRepository repository;
 
-        public CreateClubCommandHandler(IClubRepository clubRepository)
+        public CreateClubCommandHandler(IClubRepository repository)
         {
-            this.clubRepository = clubRepository;
+            this.repository = repository;
         }
 
         public async Task<bool> Handle(CreateClubCommand request, CancellationToken cancellationToken)
@@ -22,9 +22,9 @@ namespace WhatSport.Application.Commands.Clubs
                 CityId = request.CityId
             };
 
-            await clubRepository.AddClubAsync(club, cancellationToken);
+            await repository.AddClubAsync(club, cancellationToken);
             
-            return await clubRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
+            return await repository.UnitOfWork.SaveChangesAsync(cancellationToken);
         }
     }
 }

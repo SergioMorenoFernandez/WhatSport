@@ -6,16 +6,16 @@ namespace WhatSport.Application.Queries.Users
 {
     internal class UserByIdQueryHandler : IRequestHandler<UserByIdQuery, User>
     {
-        private readonly IUserRepository userRepository;
+        private readonly IUserRepository repository;
 
-        public UserByIdQueryHandler(IUserRepository userRepository)
+        public UserByIdQueryHandler(IUserRepository repository)
         {
-            this.userRepository = userRepository;
+            this.repository = repository;
         }
 
         public async Task<User> Handle(UserByIdQuery request, CancellationToken cancellationToken)
         {
-            var user = await userRepository.GetUserByIdAsync(request.Id, cancellationToken);
+            var user = await repository.GetUserByIdAsync(request.Id, cancellationToken);
 
             return new User(user);
         }

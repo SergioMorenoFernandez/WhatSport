@@ -6,16 +6,16 @@ namespace WhatSport.Application.Queries.Cities
 {
     public class CountriesQueryHandler : IRequestHandler<CitiesQuery, City[]>
     {
-        private readonly ICityRepository cityRepository;
+        private readonly ICityRepository repository;
 
-        public CountriesQueryHandler(ICityRepository cityRepository)
+        public CountriesQueryHandler(ICityRepository repository)
         {
-            this.cityRepository = cityRepository;
+            this.repository = repository;
         }
 
         public async Task<City[]> Handle(CitiesQuery request, CancellationToken cancellationToken)
         {
-            var cities = await cityRepository.GetAllCitiesAsync(cancellationToken);
+            var cities = await repository.GetAllCitiesAsync(cancellationToken);
 
             return cities.Select(c => new City(c)).ToArray();
         }

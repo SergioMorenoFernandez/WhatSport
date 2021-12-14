@@ -5,5 +5,8 @@ namespace WhatSport.Application.Queries.Clubs
 {
     public class ClubsQuery : IRequest<Club[]>
     {
+        public ClubsQuery()
+        {
+        }
     }
 }

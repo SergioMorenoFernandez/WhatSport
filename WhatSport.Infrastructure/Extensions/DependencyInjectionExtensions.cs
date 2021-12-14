@@ -13,6 +13,7 @@ namespace WhatSport.Infrastructure.Extensions
             services.AddTransient<ICountryRepository, CountryRepository>();
             services.AddTransient<ILevelRepository, LevelRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IMatchRepository, MatchRepository>();
 
             return services;
         }

@@ -6,16 +6,16 @@ namespace WhatSport.Application.Queries.Levels
 {
     internal class GetUserLevelsQueryHandler : IRequestHandler<GetUserLevelsQuery, Level[]>
     {
-        private readonly ILevelRepository levelRepository;
+        private readonly ILevelRepository repository;
 
-        public GetUserLevelsQueryHandler(ILevelRepository levelRepository)
+        public GetUserLevelsQueryHandler(ILevelRepository repository)
         {
-            this.levelRepository = levelRepository;
+            this.repository = repository;
         }
 
         public async Task<Level[]> Handle(GetUserLevelsQuery request, CancellationToken cancellationToken)
         {
-            var levels = await levelRepository.GetLevelsByUserAsync(request.UserId, cancellationToken);
+            var levels = await repository.GetLevelsByUserAsync(request.UserId, cancellationToken);
 
             return levels.Select(l => new Level(l)).ToArray();
         }

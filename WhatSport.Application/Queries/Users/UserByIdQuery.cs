@@ -5,6 +5,11 @@ namespace WhatSport.Application.Queries.Users
 {
     public class UserByIdQuery : IRequest<User>
     {
+
+        public UserByIdQuery()
+        {
+
+        }
         public UserByIdQuery(int id)
         {
             Id = id;

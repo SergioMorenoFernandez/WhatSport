@@ -49,6 +49,18 @@ namespace WhatSport.Api.Migrations
                             Id = 1,
                             CountryId = 1,
                             Name = "Málaga"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CountryId = 1,
+                            Name = "Granada"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CountryId = 1,
+                            Name = "Barcelona"
                         });
                 });
 
@@ -211,7 +223,10 @@ namespace WhatSport.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("ClubId")
+                    b.Property<int?>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ClubId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateEnd")
@@ -233,11 +248,115 @@ namespace WhatSport.Api.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CityId");
+
                     b.HasIndex("ClubId");
 
                     b.HasIndex("SportId");
 
                     b.ToTable("Matches", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CityId = 1,
+                            DateEnd = new DateTime(2021, 12, 1, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateStart = new DateTime(2021, 12, 1, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            Note = "",
+                            OtherPlace = "",
+                            SportId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CityId = 1,
+                            DateEnd = new DateTime(2021, 12, 11, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateStart = new DateTime(2021, 12, 11, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            Note = "",
+                            OtherPlace = "",
+                            SportId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CityId = 1,
+                            DateEnd = new DateTime(2021, 12, 31, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateStart = new DateTime(2021, 12, 31, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            Note = "",
+                            OtherPlace = "",
+                            SportId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CityId = 1,
+                            DateEnd = new DateTime(2021, 12, 21, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateStart = new DateTime(2021, 12, 21, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            Note = "",
+                            OtherPlace = "",
+                            SportId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CityId = 1,
+                            DateEnd = new DateTime(2022, 1, 8, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateStart = new DateTime(2022, 1, 8, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            Note = "",
+                            OtherPlace = "",
+                            SportId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CityId = 2,
+                            DateEnd = new DateTime(2021, 12, 18, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateStart = new DateTime(2021, 12, 18, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            Note = "",
+                            OtherPlace = "",
+                            SportId = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CityId = 1,
+                            DateEnd = new DateTime(2021, 12, 17, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateStart = new DateTime(2021, 12, 17, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            Note = "",
+                            OtherPlace = "",
+                            SportId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CityId = 2,
+                            DateEnd = new DateTime(2021, 12, 16, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateStart = new DateTime(2021, 12, 16, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            Note = "",
+                            OtherPlace = "",
+                            SportId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CityId = 1,
+                            DateEnd = new DateTime(2021, 12, 31, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateStart = new DateTime(2021, 12, 31, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            Note = "",
+                            OtherPlace = "",
+                            SportId = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CityId = 3,
+                            DateEnd = new DateTime(2021, 12, 11, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateStart = new DateTime(2021, 12, 11, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            Note = "",
+                            OtherPlace = "",
+                            SportId = 2
+                        });
                 });
 
             modelBuilder.Entity("WhatSport.Domain.Models.Player", b =>
@@ -271,6 +390,125 @@ namespace WhatSport.Api.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Players", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Assist = true,
+                            MatchId = 1,
+                            Note = "",
+                            Team = 1,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Assist = false,
+                            MatchId = 1,
+                            Note = "",
+                            Team = 2,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Assist = true,
+                            MatchId = 1,
+                            Note = "",
+                            Team = 1,
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Assist = false,
+                            MatchId = 2,
+                            Note = "",
+                            Team = 1,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Assist = false,
+                            MatchId = 2,
+                            Note = "",
+                            Team = 1,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Assist = false,
+                            MatchId = 2,
+                            Note = "",
+                            Team = 2,
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Assist = false,
+                            MatchId = 2,
+                            Note = "",
+                            Team = 2,
+                            UserId = 4
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Assist = false,
+                            MatchId = 3,
+                            Note = "",
+                            Team = 1,
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Assist = false,
+                            MatchId = 4,
+                            Note = "",
+                            Team = 1,
+                            UserId = 4
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Assist = false,
+                            MatchId = 4,
+                            Note = "",
+                            Team = 1,
+                            UserId = 4
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Assist = false,
+                            MatchId = 5,
+                            Note = "",
+                            Team = 1,
+                            UserId = 5
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Assist = false,
+                            MatchId = 6,
+                            Note = "",
+                            Team = 1,
+                            UserId = 5
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Assist = false,
+                            MatchId = 10,
+                            Note = "",
+                            Team = 1,
+                            UserId = 6
+                        });
                 });
 
             modelBuilder.Entity("WhatSport.Domain.Models.Score", b =>
@@ -298,6 +536,88 @@ namespace WhatSport.Api.Migrations
                     b.HasIndex("MatchId");
 
                     b.ToTable("Scores", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            MatchId = 1,
+                            Number = 1,
+                            Team = 1,
+                            Value = 6
+                        },
+                        new
+                        {
+                            Id = 2,
+                            MatchId = 1,
+                            Number = 1,
+                            Team = 2,
+                            Value = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            MatchId = 1,
+                            Number = 2,
+                            Team = 1,
+                            Value = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            MatchId = 1,
+                            Number = 2,
+                            Team = 2,
+                            Value = 6
+                        },
+                        new
+                        {
+                            Id = 5,
+                            MatchId = 1,
+                            Number = 3,
+                            Team = 1,
+                            Value = 6
+                        },
+                        new
+                        {
+                            Id = 6,
+                            MatchId = 1,
+                            Number = 3,
+                            Team = 2,
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 7,
+                            MatchId = 2,
+                            Number = 1,
+                            Team = 1,
+                            Value = 6
+                        },
+                        new
+                        {
+                            Id = 8,
+                            MatchId = 2,
+                            Number = 1,
+                            Team = 2,
+                            Value = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            MatchId = 2,
+                            Number = 2,
+                            Team = 1,
+                            Value = 6
+                        },
+                        new
+                        {
+                            Id = 10,
+                            MatchId = 2,
+                            Number = 2,
+                            Team = 2,
+                            Value = 3
+                        });
                 });
 
             modelBuilder.Entity("WhatSport.Domain.Models.ScoreConfirmation", b =>
@@ -324,6 +644,92 @@ namespace WhatSport.Api.Migrations
                     b.HasIndex("ScoreId");
 
                     b.ToTable("ScoreConfirmations", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Confirmed = true,
+                            PlayerId = 1,
+                            ScoreId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Confirmed = true,
+                            PlayerId = 1,
+                            ScoreId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Confirmed = true,
+                            PlayerId = 1,
+                            ScoreId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Confirmed = true,
+                            PlayerId = 1,
+                            ScoreId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Confirmed = true,
+                            PlayerId = 1,
+                            ScoreId = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Confirmed = true,
+                            PlayerId = 1,
+                            ScoreId = 6
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Confirmed = true,
+                            PlayerId = 3,
+                            ScoreId = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Confirmed = true,
+                            PlayerId = 3,
+                            ScoreId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Confirmed = true,
+                            PlayerId = 3,
+                            ScoreId = 3
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Confirmed = true,
+                            PlayerId = 3,
+                            ScoreId = 4
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Confirmed = true,
+                            PlayerId = 3,
+                            ScoreId = 5
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Confirmed = true,
+                            PlayerId = 3,
+                            ScoreId = 6
+                        });
                 });
 
             modelBuilder.Entity("WhatSport.Domain.Models.Sport", b =>
@@ -403,7 +809,7 @@ namespace WhatSport.Api.Migrations
                         {
                             Id = 1,
                             LastName = "Moreno",
-                            Login = "test",
+                            Login = "admin",
                             Name = "Sergio",
                             Password = "098f6bcd4621d373cade4e832627b4f6",
                             Role = "Admin",
@@ -418,6 +824,46 @@ namespace WhatSport.Api.Migrations
                             Password = "098f6bcd4621d373cade4e832627b4f6",
                             Role = "User",
                             Status = false
+                        },
+                        new
+                        {
+                            Id = 3,
+                            LastName = "latrusca",
+                            Login = "user1",
+                            Name = "Amparo",
+                            Password = "098f6bcd4621d373cade4e832627b4f6",
+                            Role = "User",
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 4,
+                            LastName = "Perez",
+                            Login = "user4",
+                            Name = "Florencio",
+                            Password = "098f6bcd4621d373cade4e832627b4f6",
+                            Role = "User",
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 5,
+                            LastName = "Pelaez",
+                            Login = "user5",
+                            Name = "Maria",
+                            Password = "098f6bcd4621d373cade4e832627b4f6",
+                            Role = "User",
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 6,
+                            LastName = "Gomez",
+                            Login = "test",
+                            Name = "Juan",
+                            Password = "098f6bcd4621d373cade4e832627b4f6",
+                            Role = "User",
+                            Status = true
                         });
                 });
 
@@ -521,17 +967,22 @@ namespace WhatSport.Api.Migrations
 
             modelBuilder.Entity("WhatSport.Domain.Models.Match", b =>
                 {
+                    b.HasOne("WhatSport.Domain.Models.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId");
+
                     b.HasOne("WhatSport.Domain.Models.Club", "Club")
                         .WithMany("Matches")
                         .HasForeignKey("ClubId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("WhatSport.Domain.Models.Sport", "Sport")
                         .WithMany("Matches")
                         .HasForeignKey("SportId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("City");
 
                     b.Navigation("Club");
 

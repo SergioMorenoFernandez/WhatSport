@@ -25,40 +25,43 @@ namespace WhatSport.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<City[]>> GetAll()
         {
-            var citiesQuery = new CitiesQuery();
+            var query = new CitiesQuery();
 
             logger.LogInformation(
                "----- Sending command: {CommandName}: ({@Command})",
-               citiesQuery.GetGenericTypeName(),
-               citiesQuery);
+               query.GetGenericTypeName(),
+               query);
 
-            return await mediator.Send(citiesQuery);
+            return await mediator.Send(query);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<City>> GetById([FromRoute] CountryByIdQuery cityByIdQuery)
+        public async Task<ActionResult<City>> GetById([FromRoute] int id)
         {
+            var query = new CityByIdQuery(id);
+
             logger.LogInformation(
                "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
-               cityByIdQuery.GetGenericTypeName(),
-               nameof(cityByIdQuery.Id),
-               cityByIdQuery.Id,
-               cityByIdQuery);
+               query.GetGenericTypeName(),
+               nameof(query.Id),
+               query.Id,
+               query);
+            
 
-            return await mediator.Send(cityByIdQuery);
+            return await mediator.Send(query);
         }
 
         [HttpPost]
-        public async Task<ActionResult<bool>> Post([FromBody] CreateCityCommand createCityCommand)
+        public async Task<ActionResult<bool>> Post([FromBody] CreateCityCommand command)
         {
             logger.LogInformation(
                "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
-               createCityCommand.GetGenericTypeName(),
-               nameof(createCityCommand.Name),
-               createCityCommand.Name,
-               createCityCommand);
+               command.GetGenericTypeName(),
+               nameof(command.Name),
+               command.Name,
+               command);
 
-            return await mediator.Send(createCityCommand);
+            return await mediator.Send(command);
         }
     }
 }

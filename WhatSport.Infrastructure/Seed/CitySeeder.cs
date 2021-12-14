@@ -10,7 +10,9 @@ namespace WhatSport.Infrastructure.Seed
         {
             var cities = new List<City>
             {
-                new City { Id = 1, Name = "Málaga", CountryId = 1 }
+                new City { Id = 1, Name = "Málaga", CountryId = 1 },
+                new City { Id = 2, Name = "Granada", CountryId = 1 },
+                new City { Id = 3, Name = "Barcelona", CountryId = 1 }
             };
 
             modelBuilder.Entity<City>().HasData(cities);

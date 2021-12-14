@@ -6,11 +6,11 @@ namespace WhatSport.Application.Commands.Countries
 {
     public class CreateCountryCommandHandler : IRequestHandler<CreateCountryCommand, bool>
     {
-        private readonly ICountryRepository countryRepository;
+        private readonly ICountryRepository repository;
 
-        public CreateCountryCommandHandler(ICountryRepository countryRepository)
+        public CreateCountryCommandHandler(ICountryRepository repository)
         {
-            this.countryRepository = countryRepository;
+            this.repository = repository;
         }
 
         public async Task<bool> Handle(CreateCountryCommand request, CancellationToken cancellationToken)
@@ -20,9 +20,9 @@ namespace WhatSport.Application.Commands.Countries
                 Name = request.Name
             };
 
-            await countryRepository.AddCountryAsync(country, cancellationToken);
+            await repository.AddCountryAsync(country, cancellationToken);
 
-            return await countryRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
+            return await repository.UnitOfWork.SaveChangesAsync(cancellationToken);
         }
     }
 }
