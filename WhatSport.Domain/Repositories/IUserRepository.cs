@@ -14,5 +14,6 @@ namespace WhatSport.Domain.Repositories
 
         Task<IEnumerable<User>> GetUserAsync(CancellationToken cancellationToken = default);
         void UpdateUser(User user);
+        void CreateUser(User user);
     }
 }

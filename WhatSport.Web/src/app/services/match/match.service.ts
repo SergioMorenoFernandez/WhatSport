@@ -8,15 +8,14 @@ import { environment } from '../../../environments/environment';
 
 const apiURL = environment.apiURL + '/match';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable({
   providedIn: 'root'
 })
 export class MatchService {
-
-
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
 
   constructor(
     private http: HttpClient) { }
@@ -27,7 +26,7 @@ export class MatchService {
       // if not search term, return empty hero array.
       return of([]);
     }
-    return this.http.get<Match[]>(`${apiURL}/?name=${term}`).pipe(
+    return this.http.get<Match[]>(`${apiURL}/?name=${term}`,httpOptions).pipe(
       tap(x => x.length ?
         console.log(`found matches with params ("${term}")`) :
         console.log(`no match founf with params ("${term}")`)),
@@ -40,7 +39,7 @@ export class MatchService {
       // if not search term, return empty hero array.
       return of([]);
     }
-    return this.http.get<Match[]>(`${apiURL}/?name=${term}`).pipe(
+    return this.http.get<Match[]>(`${apiURL}/?name=${term}`,httpOptions).pipe(
       tap(x => x.length ?
         console.log(`found matches with params ("${term}")`) :
         console.log(`no match founf with params ("${term}")`)),
@@ -53,7 +52,7 @@ export class MatchService {
       // if not search term, return empty hero array.
       return of([]);
     }
-    return this.http.get<Match[]>(`${apiURL}/?name=${term}`).pipe(
+    return this.http.get<Match[]>(`${apiURL}/?name=${term}`,httpOptions).pipe(
       tap(x => x.length ?
         console.log(`found matches with params ("${term}")`) :
         console.log(`no match founf with params ("${term}")`)),
@@ -61,22 +60,31 @@ export class MatchService {
     );
   }
 
-    /**
+  getTotalMatch(): Observable<any> {
+    return this.http.get<any>(apiURL+ '/totalmatch',httpOptions).pipe(
+      catchError(this.handleError<any>(`getTotalMatch`))
+    );
+  }
+  
+  /**
    * Handle Http operation that failed.
    * Let the app continue.
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-     private handleError<T>(operation = 'operation', result?: T) {
-      return (error: any): Observable<T> => {
-  
-        // TODO: send the error to remote logging infrastructure
-        console.error(error); // log to console instead
-  
-        // Let the app keep running by returning an empty result.
-        return of(result as T);
-      };
-    }
+   private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      console.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
 
 
 }

@@ -30,17 +30,32 @@ namespace WhatSport.Api.Controllers
 
         [HttpPost("login")]
         [AllowAnonymous]
-        public async Task<ActionResult<object>> Login([FromBody] LoginQuery loginQuery)
+        public async Task<ActionResult<object>> Login([FromBody] LoginQuery request)
         {
             logger.LogInformation(
                "----- Sending command: {CommandName} - {IdProperty}: {CommandId}",
-               loginQuery.GetGenericTypeName(),
-               nameof(loginQuery.Login),
-               loginQuery.Login);
+               request.GetGenericTypeName(),
+               nameof(request.Login),
+               request.Login);
 
-            var user = await mediator.Send(loginQuery);
+            var user = await mediator.Send(request);
 
             return new { Token = GenerateJwtToken(user), user = user };
+        }
+
+        [HttpPost("register")]
+        [AllowAnonymous]
+        public async Task<ActionResult<bool>> Register([FromBody] CreateUserCommand request)
+        {
+            logger.LogInformation(
+               "----- Sending command: {CommandName} - {IdProperty}: {CommandId}",
+               request.GetGenericTypeName(),
+               nameof(request.Login),
+               request.Login);
+
+            var result = await mediator.Send(request);
+
+            return result;
         }
 
         [HttpGet]
@@ -65,6 +80,17 @@ namespace WhatSport.Api.Controllers
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
             var query = new UserQuery();
 
+            logger.LogInformation(
+               "----- Sending command: {CommandName}: ({@Command})",
+               query.GetGenericTypeName(),
+               query);
+
+            return await mediator.Send(query);
+        }
+
+        [HttpGet("TotalFriends")]
+        public async Task<ActionResult<long>> TotalMatchByUser([FromQuery] UserTotalQuery query)
+        {
             logger.LogInformation(
                "----- Sending command: {CommandName}: ({@Command})",
                query.GetGenericTypeName(),

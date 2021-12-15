@@ -1,18 +1,11 @@
 <div class="col-md-12">
-    <div class="card card-container">
-      <!-- <img
-        id="profile-img"
-        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-        class="profile-img-card"
-      /> -->
-      <form
+      <form class="custom-form"
         *ngIf="!isLoggedIn"
         name="form"
         (ngSubmit)="f.form.valid && onSubmit()"
         #f="ngForm"
         novalidate
-      >
-        <div class="form-group">
+        >
           <label for="username">Username</label>
           <input
             type="text"
@@ -29,8 +22,6 @@
           >
             Username is required!
           </div>
-        </div>
-        <div class="form-group">
           <label for="password">Password</label>
           <input
             type="password"
@@ -51,13 +42,9 @@
               Password must be at least 4 characters
             </div>
           </div>
-        </div>
-        <div class="form-group">
           <button class="btn btn-primary btn-block">
             Login
           </button>
-        </div>
-        <div class="form-group">
           <div
             class="alert alert-danger"
             role="alert"
@@ -65,11 +52,9 @@
           >
             Login failed: {{ errorMessage }}
           </div>
-        </div>
       </form>
   
       <div class="alert alert-success" *ngIf="isLoggedIn">
         Logged in as {{ role }}.
       </div>
-    </div>
   </div>

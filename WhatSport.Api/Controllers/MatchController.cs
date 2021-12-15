@@ -49,6 +49,17 @@ namespace WhatSport.Api.Controllers
             return await mediator.Send(query);
         }
 
+        [HttpGet("TotalMatch")]
+        public async Task<ActionResult<long>> TotalMatchByUser([FromQuery] MatchTotalQuery query)
+        {
+            logger.LogInformation(
+               "----- Sending command: {CommandName}: ({@Command})",
+               query.GetGenericTypeName(),
+               query);
+
+            return await mediator.Send(query);
+        }
+
 
         [HttpPost]
         public async Task<ActionResult<bool>> Post([FromBody] CreateMatchCommand command)

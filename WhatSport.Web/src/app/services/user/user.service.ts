@@ -30,6 +30,12 @@ export class UserService {
     );
   }
 
+  getTotalFriends(): Observable<any> {
+    return this.http.get<any>(apiURL+ '/totalfriends',httpOptions).pipe(
+      catchError(this.handleError<any>(`getTotalFriends`))
+    );
+  }
+
   
   /**
    * Handle Http operation that failed.

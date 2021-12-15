@@ -37,5 +37,9 @@ namespace WhatSport.Infrastructure.Repositories
         {
             context.Users.Update(user);
         }
+        public void CreateUser(User user)
+        {
+            context.Users.Add(user);
+        }
     }
 }
