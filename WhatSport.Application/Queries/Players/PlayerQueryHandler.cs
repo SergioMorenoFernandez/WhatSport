@@ -15,11 +15,11 @@ namespace WhatSport.Application.Queries.Matches
 
         public async Task<User[]> Handle(PlayerQuery request, CancellationToken cancellationToken)
         {
-            IEnumerable<Domain.Models.User> value;
+            IEnumerable<Domain.Models.Player> value;
 
-            value = await repository.GetPlayersByMatchAsync(request.MatchId, cancellationToken);
+            value = await repository.GetPlayersByMatchAsync(request.MatchId, request.Team, cancellationToken);
 
-            return value.Select(c => new User(c)).ToArray();
+            return value.Select(c => new User(c.User)).ToArray();
         }
 
     }

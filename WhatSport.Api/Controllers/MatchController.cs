@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using WhatSport.Api.Models;
 using WhatSport.Application.Commands.Matches;
 using WhatSport.Application.Models;
 using WhatSport.Application.Queries.Matches;
@@ -35,10 +35,10 @@ namespace WhatSport.Api.Controllers
             return await mediator.Send(query);
         }
 
-        [HttpGet("{id}/player")]
-        public async Task<ActionResult<User[]>> GetPlayers([FromRoute] int id)
+        [HttpGet("{id}/team/{idTeam}")]
+        public async Task<ActionResult<User[]>> GetPlayers([FromRoute] int id, [FromRoute] int idTeam)
         {
-            var query = new PlayerQuery(id);
+            var query = new PlayerQuery(id,idTeam);
 
             logger.LogInformation(
                "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
@@ -86,6 +86,38 @@ namespace WhatSport.Api.Controllers
                nameof(command.SportId),
                command.SportId,
                command);
+
+            return await mediator.Send(command);
+        }
+
+        [HttpPost("/match/{id}/Join")]
+        public async Task<ActionResult<bool>> Join([FromRoute] int id,[FromBody] PlayerJoin request)
+        {
+            var command = new JoinMatchCommand(request.UserId,request.Team,id);
+
+            logger.LogInformation(
+               "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
+               command.GetGenericTypeName(),
+               nameof(command.MatchId),
+               command.MatchId,
+               command);
+            
+
+            return await mediator.Send(command);
+        }
+
+        [HttpDelete("/match/{id}/disjoin/{idUser}")]
+        public async Task<ActionResult<bool>> DisJoin([FromRoute] int id, [FromRoute] int idUser)
+        {
+
+            var command = new DisJoinMatchCommand(idUser, id);
+            logger.LogInformation(
+               "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
+               command.GetGenericTypeName(),
+               nameof(command.MatchId),
+               command.MatchId,
+               command);
+
 
             return await mediator.Send(command);
         }

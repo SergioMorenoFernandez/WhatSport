@@ -1,1 +1,11 @@
+<div class="container" *ngIf="currentUser; else loggedOut"></div>
 <p>matches works!</p>
+
+
+
+
+
+
+<ng-template #loggedOut>
+    Please login.
+  </ng-template>

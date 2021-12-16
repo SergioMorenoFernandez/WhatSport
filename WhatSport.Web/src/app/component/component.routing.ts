@@ -1,7 +1,4 @@
 import { Routes } from '@angular/router';
-import { NgbdAlertBasicComponent } from './alert/alert.component';
-
-import { ButtonsComponent } from './buttons/buttons.component';
 import { MatchesComponent } from './matches/matches.component';
 import { ClubsComponent } from './clubs/clubs.component';
 import { FriendsComponent } from './friends/friends.component';
@@ -15,14 +12,6 @@ export const ComponentsRoutes: Routes = [
 			{
 				path: 'card',
 				component: CardMatchComponent
-			},
-			{
-				path: 'alert',
-				component: NgbdAlertBasicComponent
-			},
-			{
-				path: 'buttons',
-				component: ButtonsComponent
 			},
 			{
 				path: 'match',

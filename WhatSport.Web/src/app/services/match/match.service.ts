@@ -93,6 +93,13 @@ export class MatchService {
       catchError(this.handleError<Player[]>('getPlayers', []))
     );
   }
+
+  JoinMatch(matchId: number, userId:number, team:number):  Observable<any> {
+    return this.http.post(`${apiURL}/${matchId}/Join`,{userId,team},httpOptions).pipe(
+      catchError(this.handleError<any>('JoinMatch', []))
+    );
+
+  }
   
   /**
    * Handle Http operation that failed.

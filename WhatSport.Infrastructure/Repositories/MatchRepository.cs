@@ -22,9 +22,9 @@ namespace WhatSport.Infrastructure.Repositories
 
         public IUnitOfWork UnitOfWork => context;
 
-        public async Task AddMatchAsync(Match match, CancellationToken cancellationToken = default)
+        public async Task AddMatchAsync(Match value, CancellationToken cancellationToken = default)
         {
-            await context.AddAsync(match, cancellationToken);
+            await context.AddAsync(value, cancellationToken);
         }
 
         public async Task<IEnumerable<Match>> GetAllMatchesAsync(CancellationToken cancellationToken = default)
@@ -39,6 +39,7 @@ namespace WhatSport.Infrastructure.Repositories
         public async Task<Match> GetMatchByIdAsync(int id, CancellationToken cancellationToken = default)
         {
             return await context.Matches.Include(c => c.Sport)
+                .Include(c => c.Players).ThenInclude(cs => cs.User)
                 .Include(c => c.Club)
                 .AsNoTracking()
                 .SingleAsync(c => c.Id == id, cancellationToken);

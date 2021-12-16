@@ -26,7 +26,7 @@ namespace WhatSport.Application.Commands.Users
                 Status=true
             };
 
-            repository.CreateUser(value);
+            await repository.CreateUserAsync(value, cancellationToken);
 
             return await repository.UnitOfWork.SaveChangesAsync(cancellationToken);
         }

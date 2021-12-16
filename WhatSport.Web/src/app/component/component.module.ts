@@ -5,8 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ComponentsRoutes } from './component.routing';
-import { NgbdAlertBasicComponent } from './alert/alert.component';
-import { ButtonsComponent } from './buttons/buttons.component';
 import { MatchesComponent } from './matches/matches.component';
 import { ClubsComponent } from './clubs/clubs.component';
 import { MatchDetailComponent } from './match-detail/match-detail.component';
@@ -24,8 +22,6 @@ import { FriendsComponent } from './friends/friends.component';
     NgbModule,
   ],
   declarations: [
-    NgbdAlertBasicComponent,
-    ButtonsComponent,
     MatchesComponent,
     ClubsComponent,
     MatchDetailComponent,

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using WhatSport.Domain;
@@ -21,11 +22,25 @@ namespace WhatSport.Infrastructure.Repositories
 
         public async Task<User> GetUserByIdAsync(int id, CancellationToken cancellationToken = default)
         {
-            return await context.Users.AsNoTracking().SingleAsync(u => u.Id == id, cancellationToken);
+            return await context.Users
+                .Include(u => u.SentFriendRequests)
+                .AsNoTracking().SingleAsync(u => u.Id == id, cancellationToken);
         }
         public async Task<IEnumerable<User>> GetUserAsync(CancellationToken cancellationToken = default)
         {
             return await context.Users.AsNoTracking().ToListAsync(cancellationToken);
+        }
+
+        public async Task<IEnumerable<User>> GetFriendsAsync(int id, CancellationToken cancellationToken = default)
+        {
+            return await (from user in context.Set<User>()
+                        join friend in context.Set<Friend>()
+                            on user.Id equals friend.UserId
+                        join userfriend in context.Set<User>()
+                            on friend.FriendUserId equals userfriend.Id
+                        where user.Id == id
+                        select userfriend).AsNoTracking().ToListAsync(cancellationToken);
+
         }
 
         public async Task<User?> GetUserByLoginAsync(string login, CancellationToken cancellationToken = default)
@@ -33,13 +48,15 @@ namespace WhatSport.Infrastructure.Repositories
             return await context.Users.AsNoTracking().SingleOrDefaultAsync(u => u.Login == login, cancellationToken);
         }
 
-        public void UpdateUser(User user)
+        public async void UpdateUser(User user, CancellationToken cancellationToken = default)
         {
             context.Users.Update(user);
         }
-        public void CreateUser(User user)
+        public async Task CreateUserAsync(User user, CancellationToken cancellationToken = default)
         {
-            context.Users.Add(user);
+            await context.Users.AddAsync(user,cancellationToken);
         }
+
+
     }
 }

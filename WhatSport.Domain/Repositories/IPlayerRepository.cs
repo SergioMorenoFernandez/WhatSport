@@ -9,6 +9,10 @@ namespace WhatSport.Domain.Repositories
     {
         IUnitOfWork UnitOfWork { get; }
 
-        Task<IEnumerable<User>> GetPlayersByMatchAsync(int matchId, CancellationToken cancellationToken = default);
+        Task<IEnumerable<Player>> GetPlayersByMatchAsync(int matchId, int team, CancellationToken cancellationToken = default);
+
+        Task AddPlayerAsync(Player value, CancellationToken cancellationToken = default);
+
+        Task RemovePlayerAsync(Player value, CancellationToken cancellationToken = default);
     }
 }

@@ -12,8 +12,11 @@ namespace WhatSport.Domain.Repositories
         Task<User?> GetUserByLoginAsync(string login, CancellationToken cancellationToken = default);
         Task<User> GetUserByIdAsync(int id, CancellationToken cancellationToken = default);
 
+        Task<IEnumerable<User>> GetFriendsAsync(int id, CancellationToken cancellationToken = default);
+
         Task<IEnumerable<User>> GetUserAsync(CancellationToken cancellationToken = default);
-        void UpdateUser(User user);
-        void CreateUser(User user);
+        void UpdateUser(User user, CancellationToken cancellationToken = default);
+        Task CreateUserAsync(User user, CancellationToken cancellationToken = default);
+
     }
 }

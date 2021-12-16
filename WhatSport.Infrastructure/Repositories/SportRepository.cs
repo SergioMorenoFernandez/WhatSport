@@ -24,5 +24,10 @@ namespace WhatSport.Infrastructure.Repositories
             return await context.Sports.AsNoTracking().ToListAsync(cancellationToken);
         }
 
+        public async Task<Sport> GetSportAsync(int id, CancellationToken cancellationToken = default)
+        {
+            return await context.Sports.AsNoTracking().SingleAsync(u => u.Id == id, cancellationToken);
+
+        }
     }
 }

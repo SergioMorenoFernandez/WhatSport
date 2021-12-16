@@ -7,6 +7,7 @@ using System.Security.Claims;
 using System.Text;
 using WhatSport.Application.Commands.Users;
 using WhatSport.Application.Models;
+using WhatSport.Application.Queries.Matches;
 using WhatSport.Application.Queries.Users;
 using WhatSport.Domain.Extensions;
 
@@ -74,11 +75,39 @@ namespace WhatSport.Api.Controllers
             return await mediator.Send(query);
         }
 
-        [HttpGet("Friend")]
+        [HttpGet("/Friend")]
         public async Task<ActionResult<User[]>> GetFriends()
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
-            var query = new UserQuery();
+            var query = new FriendQuery(userId);
+
+            logger.LogInformation(
+               "----- Sending command: {CommandName}: ({@Command})",
+               query.GetGenericTypeName(),
+               query);
+
+            return await mediator.Send(query);
+        }
+
+        [HttpPost("/Friend")]
+        public async Task<ActionResult<bool>> AddFriend([FromBody] int userFriendId)
+        {
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+            var query = new CreateFriendCommand(userId,userFriendId);
+
+            logger.LogInformation(
+               "----- Sending command: {CommandName}: ({@Command})",
+               query.GetGenericTypeName(),
+               query);
+
+            return await mediator.Send(query);
+        }
+
+        [HttpDelete("/Friend/{userFriendId}")]
+        public async Task<ActionResult<bool>> RemoveFriend([FromRoute] int userFriendId)
+        {
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+            var query = new DeleteFriendCommand(userId, userFriendId);
 
             logger.LogInformation(
                "----- Sending command: {CommandName}: ({@Command})",

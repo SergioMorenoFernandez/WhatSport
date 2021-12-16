@@ -8,5 +8,6 @@ namespace WhatSport.Domain.Repositories
     public interface ISportRepository
     {
         Task<IEnumerable<Sport>> GetAllSportAsync(CancellationToken cancellationToken = default);
+        Task<Sport> GetSportAsync(int id, CancellationToken cancellationToken = default);
     }
 }

@@ -7,12 +7,12 @@ import { Player } from '../../Models/Player';
 @Component({
   selector: 'app-card-match',
   templateUrl: './card-match.component.html',
-  styleUrls: ['./card-match.component.scss']
+  styleUrls: ['./card-match.component.css']
 })
 export class CardMatchComponent implements OnInit {
   @Input() matchId: number=0;
-  @Input() dateStart: Date;
-  @Input() dateEnd: Date;
+  @Input() dateStart?: Date;
+  @Input() dateEnd?: Date;
 
   totalConfirmation: any=0;
   players: Player[]=[];
