@@ -3,6 +3,7 @@ import { UserService } from '../../services/user/user.service';
 
 import { MatchService } from '../../services/match/match.service';
 import { TokenStorageService } from '../../services/tokenStorage/token-storage.service';
+import { Match } from '../../Models/Match';
 
 @Component({
   selector: 'app-profile',
@@ -13,6 +14,9 @@ export class ProfileComponent implements OnInit {
   currentUser: any;
   totalFriends: number=0;
   totalMatch: number=0;
+  sportId: number=0;
+
+  matches: Match[]=[];
 
   constructor(private token: TokenStorageService, private userService: UserService, private matchService: MatchService) { }
 
@@ -31,5 +35,10 @@ export class ProfileComponent implements OnInit {
   getTotalMatch(): void {
     this.matchService.getTotalMatch()
       .subscribe(data => this.totalMatch=data);
+  }
+
+  getMatchByUser(sportId:number, userId:number): void {
+    this.matchService.searchBySportAndUser(sportId,userId)
+      .subscribe(data => this.matches=data);
   }
 }

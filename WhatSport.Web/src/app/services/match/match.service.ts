@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Match } from '../../Models/Match';
+import { Player } from '../../Models/Player';
 
 import { environment } from '../../../environments/environment';
 
@@ -21,18 +22,32 @@ export class MatchService {
     private http: HttpClient) { }
 
   /* GET heroes whose name contains search term */
-  searchBySport(term: string): Observable<Match[]> {
-    if (!term.trim()) {
+  searchBySport(sportid: number): Observable<Match[]> {
+    if (sportid==undefined) {
       // if not search term, return empty hero array.
       return of([]);
     }
-    return this.http.get<Match[]>(`${apiURL}/?name=${term}`,httpOptions).pipe(
+    return this.http.get<Match[]>(`${apiURL}/?SportId=${sportid}`,httpOptions).pipe(
       tap(x => x.length ?
-        console.log(`found matches with params ("${term}")`) :
-        console.log(`no match founf with params ("${term}")`)),
-      catchError(this.handleError<Match[]>('searchHeroes', []))
+        console.log(`found matches with params ("${sportid}")`) :
+        console.log(`no match founf with params ("${sportid}")`)),
+      catchError(this.handleError<Match[]>('searchBySport', []))
     );
   }
+
+    /* GET heroes whose name contains search term */
+    searchBySportAndUser(sportid: number, userid: number): Observable<Match[]> {
+      if (sportid==undefined) {
+        // if not search term, return empty hero array.
+        return of([]);
+      }
+      return this.http.get<Match[]>(`${apiURL}/?SportId=${sportid}&`,httpOptions).pipe(
+        tap(x => x.length ?
+          console.log(`found matches with params ("${sportid},${userid}")`) :
+          console.log(`no match founf with params ("${sportid},${userid}")`)),
+        catchError(this.handleError<Match[]>('searchBySportAndUser', []))
+      );
+    }
 
   searchByClub(term: string): Observable<Match[]> {
     if (!term.trim()) {
@@ -43,7 +58,7 @@ export class MatchService {
       tap(x => x.length ?
         console.log(`found matches with params ("${term}")`) :
         console.log(`no match founf with params ("${term}")`)),
-      catchError(this.handleError<Match[]>('searchHeroes', []))
+      catchError(this.handleError<Match[]>('searchByClub', []))
     );
   }
 
@@ -52,17 +67,30 @@ export class MatchService {
       // if not search term, return empty hero array.
       return of([]);
     }
-    return this.http.get<Match[]>(`${apiURL}/?name=${term}`,httpOptions).pipe(
+    return this.http.get<Match[]>(`${apiURL}/?userid=${term}`,httpOptions).pipe(
       tap(x => x.length ?
         console.log(`found matches with params ("${term}")`) :
         console.log(`no match founf with params ("${term}")`)),
-      catchError(this.handleError<Match[]>('searchHeroes', []))
+      catchError(this.handleError<Match[]>('v', []))
     );
   }
 
   getTotalMatch(): Observable<any> {
     return this.http.get<any>(apiURL+ '/totalmatch',httpOptions).pipe(
       catchError(this.handleError<any>(`getTotalMatch`))
+    );
+  }
+
+  getPlayers(matchId: number): Observable<Player[]> {
+    if (matchId==undefined) {
+      // if not search term, return empty hero array.
+      return of([]);
+    }
+    return this.http.get<Player[]>(`${apiURL}/${matchId}/player`,httpOptions).pipe(
+      tap(x => x.length ?
+        console.log(`found players with params ("${matchId}")`) :
+        console.log(`no players found with params ("${matchId}")`)),
+      catchError(this.handleError<Player[]>('getPlayers', []))
     );
   }
   

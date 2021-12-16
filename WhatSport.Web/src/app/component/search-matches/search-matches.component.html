@@ -1,12 +1,30 @@
 <div id="search-component">
     <label for="search-box">Hero Search</label>
-    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+    <!-- <input #searchBox id="search-box" (input)="search(searchBox.value)" /> -->
+    <p>
+      <select name="miselect" [(ngModel)]="seleccionado">
+      <option [ngValue]="objeto" *ngFor="let objeto of lista">{{objeto.nombre}}</option>
+      </select>
+      </p>
+      {{seleccionado?.id}}
+      {{seleccionado?.nombre}}
+
+      <mat-form-field appearance="fill">
+        <mat-label>Favorite animal</mat-label>
+        <mat-select [formControl]="animalControl" required>
+          <mat-option *ngFor="let animal of animals" [value]="animal">
+            {{animal.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>
+        <mat-hint>{{animalControl.value?.sound}}</mat-hint>
+      </mat-form-field>
+
+
   
     <ul class="search-result">
-      <li *ngFor="let hero of matches$ | async" >
-        <a routerLink="/detail/{{hero.id}}">
-          {{hero.name}}
-        </a>
+      <li *ngFor="let match of matches$ | async" >
+        <app-card-match [matchId]= match.id [dateStart]=match.dateStart [dateEnd]=match.dateEnd></app-card-match>
       </li>
     </ul>
   </div>

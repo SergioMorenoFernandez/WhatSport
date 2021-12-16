@@ -14,6 +14,8 @@ namespace WhatSport.Infrastructure.Extensions
             services.AddTransient<ILevelRepository, LevelRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IMatchRepository, MatchRepository>();
+            services.AddTransient<IPlayerRepository, PlayerRepository>();
+            services.AddTransient<ISportRepository, SportRepository>();
 
             return services;
         }

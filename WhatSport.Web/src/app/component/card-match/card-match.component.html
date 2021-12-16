@@ -1,0 +1,25 @@
+<!-- Card -->
+<div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Date: {{dateStart}}-{{dateEnd}}</h4>
+      <p class="card-text">
+        With supporting text below as a natural lead-in to additional content.
+    </p>
+    <ul>
+        <li *ngFor="let player of players" >
+            <div class="d-flex align-items-center">
+                <img [src]="assets/images/users/user.jpg" alt="user" width="45" class="rounded-circle">
+                <div class="ms-3">
+                    <h5 class="mb-0 font-medium">{{ts.name}}</h5>
+                </div>
+            </div>
+        </li>
+        </ul>
+
+      <h4 class="card-title">Score: </h4>
+      <h4 class="card-title">Confirmations: {{totalConfirmation}}</h4>
+      
+      <a href="/component/match/{{matchId}}" class="btn btn-light-success">Go match detail</a>
+    </div>
+  </div>
+  <!-- Card -->

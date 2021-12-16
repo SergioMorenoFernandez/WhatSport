@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using WhatSport.Application.Commands.Matches;
 using WhatSport.Application.Models;
 using WhatSport.Application.Queries.Matches;
+using WhatSport.Application.Queries.Users;
 using WhatSport.Domain.Extensions;
 
 namespace WhatSport.Api.Controllers
@@ -29,6 +30,21 @@ namespace WhatSport.Api.Controllers
             logger.LogInformation(
                "----- Sending command: {CommandName}: ({@Command})",
                query.GetGenericTypeName(),
+               query);
+
+            return await mediator.Send(query);
+        }
+
+        [HttpGet("{id}/player")]
+        public async Task<ActionResult<User[]>> GetPlayers([FromRoute] int id)
+        {
+            var query = new PlayerQuery(id);
+
+            logger.LogInformation(
+               "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
+               query.GetGenericTypeName(),
+               nameof(query.MatchId),
+               query.MatchId,
                query);
 
             return await mediator.Send(query);

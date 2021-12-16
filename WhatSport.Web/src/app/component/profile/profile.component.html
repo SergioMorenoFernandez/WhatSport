@@ -20,12 +20,7 @@
       <strong>Role:</strong>
       {{ currentUser.role }}
     </p>
-    <!-- <strong>Role:</strong>
-    <ul>
-      <li *ngFor="let role of currentUser.role">
-        {{ role }}
-      </li>
-    </ul> -->
+
 
      <label >Total matches: </label> 
     <input value="{{totalMatch}}"/>
@@ -34,6 +29,8 @@
     <label >Total friends: </label>
     <input value="{{totalFriends}}"/>
   </div>
+
+  <app-search-matches [userId]=currentUser.id></app-search-matches>
   
   <ng-template #loggedOut>
     Please login.

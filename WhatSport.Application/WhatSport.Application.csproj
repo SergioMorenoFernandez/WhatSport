@@ -16,4 +16,8 @@
     <ProjectReference Include="..\WhatSport.Domain\WhatSport.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\Players\" />
+  </ItemGroup>
+
 </Project>

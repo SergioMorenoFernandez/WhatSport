@@ -10,8 +10,8 @@ namespace WhatSport.Infrastructure.Seed
         {
             var sports = new List<Sport>
             {
-                new Sport{ Id = 1, Name = "Padel", NumberTimes = 3},
-                new Sport{ Id = 2, Name = "Futbol", NumberTimes = 2}
+                new Sport{ Id = 1, Name = "Padel", NumberTimes = 3,NumberPlayers=4},
+                new Sport{ Id = 2, Name = "Voley-Playa", NumberTimes = 2,NumberPlayers=6}
             };
 
             modelBuilder.Entity<Sport>().HasData(sports);

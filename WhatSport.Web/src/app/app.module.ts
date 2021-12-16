@@ -30,6 +30,10 @@ import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { ProfileComponent } from './component/profile/profile.component';
 
+import { CardMatchComponent } from './component/card-match/card-match.component';
+import { SearchMatchesComponent } from './component/search-matches/search-matches.component';
+
+
 import { authInterceptorProviders } from './helper/auth.interceptor';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -48,7 +52,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SidebarComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    CardMatchComponent,
+    SearchMatchesComponent,
     
   ],
   imports: [
