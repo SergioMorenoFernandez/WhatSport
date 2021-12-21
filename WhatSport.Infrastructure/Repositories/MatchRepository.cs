@@ -57,14 +57,11 @@ namespace WhatSport.Infrastructure.Repositories
 
         public async Task<IEnumerable<Match>> GetMatchByUserAsync(int sportId, int userId, CancellationToken cancellationToken = default)
         {
-            return await context.Matches.Include(c => c.Sport)
-                .Include(c => c.Club)
-                .Include(c => c.Players)
-                .AsNoTracking()
-                //.Where(c => c.SportId == sportId && c.Players.Contains(x=> x.UserId == userId))
-                //TODO --> mostrar solamente los partidos de un jugador
-                .Where(c => c.SportId == sportId )
-                .ToListAsync(cancellationToken);
+            return await (from match in context.Set<Match>()
+                          join player in context.Set<Player>()
+                              on match.Id equals player.MatchId 
+                          where match.SportId == sportId && player.UserId == userId
+                          select match).AsNoTracking().ToListAsync(cancellationToken);
         }
     }
 }

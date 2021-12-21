@@ -5,13 +5,14 @@ import { FullComponent } from './layouts/full/full.component';
 import { RegisterComponent } from './component/register/register.component';
 import { LoginComponent } from './component/login/login.component';
 import { ProfileComponent } from './component/profile/profile.component';
+import { AuthGuard } from './helper/AuthGuard';
 
 export const Approutes: Routes = [
   {
     path: '',
     component: FullComponent,
     children: [
-      { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+      { path: '', component: FullComponent, canActivate: [AuthGuard] },
       {
         path: 'dashboard',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
@@ -22,11 +23,11 @@ export const Approutes: Routes = [
       },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'profile', component: ProfileComponent }
+      { path: 'profile', component: ProfileComponent},
     ]
   },
   {
     path: '**',
-    redirectTo: '/starter'
+    redirectTo: '/dashboard'
   }
 ];

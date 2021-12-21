@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Sport } from '../../Models/Sport';
 
@@ -21,6 +21,21 @@ export class SportService {
   getSports(): Observable<Sport[]> {
     return this.http.get<Sport[]>(apiURL , httpOptions).pipe(
       catchError(this.handleError<Sport[]>(`getSports`))
+    );
+  }
+
+  getSport(id: number): Observable<Sport[]> {
+    return this.http.get<Sport[]>(apiURL , httpOptions).pipe(
+      catchError(this.handleError<Sport[]>(`getSports`))
+    );
+  }
+
+  getSportById(id: number): Observable<Sport> {
+    return this.http.get<Sport>(`${apiURL}/${id}`,httpOptions).pipe(
+      tap(x => x.id ?
+        console.log(`found sport with id ("${id}")`) :
+        console.log(`no sport found with id ("${id}")`)),
+      catchError(this.handleError<Sport>('getSportById'))
     );
   }
   

@@ -1,1 +1,57 @@
-<p>match-detail works!</p>
+<p>match-detail: {{ id }} works!</p>
+<div class="col-md-12">
+  <form class="custom-form" novalidate>
+    <div class="row">
+      <div class="col-md-4">
+        <h3>
+          <label>
+            Match Detail
+          </label>
+        </h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <label>Sport: </label>
+      </div>
+      <div class="col-md-7">
+        <input value="{{sport?.name}}" readonly />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <label>Place: </label>
+      </div>
+      <div class="col-md-10">
+        <input value="{{match.otherPlace}}" readonly />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <label>Date Start: </label>
+      </div>
+      <div class="col-md-3">
+        <input value="{{match.dateStart | date:'HH:mm dd/M/yyyy' }}" readonly />
+      </div>
+      <div class="col-md-2">
+        <label>Duration: </label>
+      </div>
+      <div class="col-md-2">
+        <input value="{{duration}}" readonly />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <label>Note: </label>
+      </div>
+      <div class="col-md-10">
+        <textarea matInput readonly>{{match.note}}</textarea>
+      </div>
+    </div>
+    <hr/>
+    <div class="col-md-12" *ngIf="sport">
+      <app-players [team]="1" [numPlayer]="sport.numberPlayers/2" [matchId]=match.id></app-players>
+      <app-players [team]="2" [numPlayer]="sport.numberPlayers/2" [matchId]=match.id></app-players>
+    </div>
+  </form>
+</div>

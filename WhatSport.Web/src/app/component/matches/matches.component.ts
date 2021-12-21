@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-
-import { MatchService } from '../../services/match/match.service';
 import { TokenStorageService } from '../../services/tokenStorage/token-storage.service';
-import { Match } from '../../Models/Match';
 
 @Component({
   selector: 'app-matches',
@@ -11,11 +8,13 @@ import { Match } from '../../Models/Match';
   styleUrls: ['./matches.component.scss']
 })
 export class MatchesComponent implements OnInit {
-  currentUser: any;
+  currentUser:any;
 
-  constructor(private token: TokenStorageService,) { }
+  constructor(private token: TokenStorageService,) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
+    this.currentUser = this.token.getUser();
   }
 
 }

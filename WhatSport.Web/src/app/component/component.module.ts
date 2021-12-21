@@ -5,12 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ComponentsRoutes } from './component.routing';
-import { MatchesComponent } from './matches/matches.component';
-import { ClubsComponent } from './clubs/clubs.component';
-import { MatchDetailComponent } from './match-detail/match-detail.component';
-import { FriendsComponent } from './friends/friends.component';
-
-
 
 
 @NgModule({
@@ -22,10 +16,6 @@ import { FriendsComponent } from './friends/friends.component';
     NgbModule,
   ],
   declarations: [
-    MatchesComponent,
-    ClubsComponent,
-    MatchDetailComponent,
-    FriendsComponent
   ]
 })
 export class ComponentsModule { }

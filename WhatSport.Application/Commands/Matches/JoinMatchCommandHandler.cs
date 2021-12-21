@@ -28,7 +28,7 @@ namespace WhatSport.Application.Commands.Matches
             //comprobar que no este ya añadido al equipo
             if (match.Players.Any(c => c.UserId == request.UserId))
             {
-                throw new Exception("User is already joined to match");
+                throw new ApplicationException("User is already joined to match");
             }
 
             var value = new Player

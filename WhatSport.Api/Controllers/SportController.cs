@@ -32,5 +32,18 @@ namespace WhatSport.Api.Controllers
 
             return await mediator.Send(query);
         }
+
+        [HttpGet("{sportId}")]
+        public async Task<ActionResult<Sport>> Get([FromRoute] int sportId)
+        {
+            var query = new SportByIdQuery(sportId);
+
+            logger.LogInformation(
+               "----- Sending command: {CommandName}: ({@Command})",
+               query.GetGenericTypeName(),
+               query);
+
+            return await mediator.Send(query);
+        }
     }
 }

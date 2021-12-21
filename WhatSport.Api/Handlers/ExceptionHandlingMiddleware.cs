@@ -45,6 +45,7 @@ namespace WhatSport.Api.Handlers
             {
                 UnauthorizedAccessException => StatusCodes.Status401Unauthorized,
                 ValidationException => StatusCodes.Status422UnprocessableEntity,
+                ApplicationException => StatusCodes.Status400BadRequest,
                 _ => StatusCodes.Status500InternalServerError
             };
 

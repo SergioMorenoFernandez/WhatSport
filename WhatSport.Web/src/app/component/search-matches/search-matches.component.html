@@ -1,26 +1,37 @@
-    <label>Select sport</label>
-    
+<div class="col-md-12">
+  <div class="row">
+    <div class="col-md-2">
+      <label>Select sport</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
       <mat-form-field appearance="fill">
-        <!-- <mat-label>Select sport</mat-label> -->
+        <mat-label>Select sport</mat-label>
         <mat-select [formControl]="sportControl" required>
           <mat-option *ngFor="let sport of lista" [value]="sport">
             {{sport.name}}
           </mat-option>
         </mat-select>
-        <mat-error *ngIf="sportControl.hasError('required')">Please choose a sport</mat-error>
-        <mat-hint>
-          {{search(sportControl.value)}}
-        <!-- <cdk-virtual-scroll-viewport itemSize="50" class="viewport"> -->
-          <!-- <mat-accordion> -->
-            <!-- <ng-container *cdkVirtualFor="let match of matches$"> -->
-
-          <app-card-match  *ngFor="let match of matches$ | async" 
-            [matchId]= match.id [dateStart]=match.dateStart [dateEnd]=match.dateEnd>
-          </app-card-match>
-
-          <!-- </ng-container> -->
-        <!-- </mat-accordion> -->
-      <!-- </cdk-virtual-scroll-viewport> -->
-
-      </mat-hint>
       </mat-form-field>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <button mat-raised-button  class="btn btn-light-success" color="primary" (click)=search() >Search</button>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <br>
+  <app-card-match  *ngFor="let match of matches" [matchId]=match.id [numPlayer]="sportControl.value.numberPlayers/2">
+  </app-card-match>
+
+  <div class="alert alert-warning" *ngIf="matches.length===0">
+    No matches found
+  </div>
+</div>
+
+
+

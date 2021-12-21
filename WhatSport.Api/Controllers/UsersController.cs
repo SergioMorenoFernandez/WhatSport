@@ -75,7 +75,7 @@ namespace WhatSport.Api.Controllers
             return await mediator.Send(query);
         }
 
-        [HttpGet("/Friend")]
+        [HttpGet("/users/friend")]
         public async Task<ActionResult<User[]>> GetFriends()
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
@@ -89,7 +89,7 @@ namespace WhatSport.Api.Controllers
             return await mediator.Send(query);
         }
 
-        [HttpPost("/Friend")]
+        [HttpPost("/users/friend")]
         public async Task<ActionResult<bool>> AddFriend([FromBody] int userFriendId)
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
@@ -103,7 +103,7 @@ namespace WhatSport.Api.Controllers
             return await mediator.Send(query);
         }
 
-        [HttpDelete("/Friend/{userFriendId}")]
+        [HttpDelete("/users/friend/{userFriendId}")]
         public async Task<ActionResult<bool>> RemoveFriend([FromRoute] int userFriendId)
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");

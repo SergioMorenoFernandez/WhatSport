@@ -18,10 +18,13 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(login: string, password: string): Observable<any> {
-    return this.http.post(apiURL + '/login', {
+    
+    var result = this.http.post(apiURL + '/login', {
       login,
       password
     }, httpOptions);
+    localStorage.setItem('currentUser', JSON.stringify(result));
+    return result;
   }
 
   register(login: string, name: string, lastName: string, password: string): Observable<any> {

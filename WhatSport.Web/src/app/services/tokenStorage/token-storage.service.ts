@@ -36,4 +36,13 @@ export class TokenStorageService {
 
     return new User;
   }
+
+  public userLogged(): boolean {
+    const user = window.sessionStorage.getItem(USER_KEY);
+    
+    if (user) {
+      return true;
+    }
+    return false;
+  }
 }

@@ -1,37 +1,27 @@
-  <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
+  <mat-card class="card">
+    <mat-card-header class="header">
+      <div mat-card-avatar ></div>
       <mat-card-title>Match</mat-card-title>
-      <mat-card-subtitle>Date: {{dateStart}}-{{dateEnd}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <!-- <p>
-        TEAM 1: 
-        <ul>
-            <li *ngFor="let player of players" >
-                <div class="d-flex align-items-center">
-                    <img [src]="assets/images/users/user2.jpg" alt="user" class="rounded-circle">
-                    <div class="ms-3">
-                        <h5 class="mb-0 font-medium">{{player.name}}</h5>
-                    </div>
-                </div>
-            </li>
-        </ul>
+      <mat-card-subtitle>Date: {{match.dateStart | date:"HH:mm dd/M/yyyy"}}
       
-      <p>
-        TEAM 2: 
-        <ul>
-            <li *ngFor="let player of players" >
-                <div class="d-flex align-items-center">
-                    <img [src]="assets/images/users/user1.jpg" alt="user" class="rounded-circle">
-                </div>
-            </li>
-        </ul> -->
+        <br>
+        <!-- Duration: {{match.dateStart.tick - match.dateEnd }} -->
+      </mat-card-subtitle>
+    
+    </mat-card-header>
+    <div class="offset-md-1">
+      <!-- <app-players [players]=playersTeam1 [title]="'Team 1'" [numPlayer]=numPlayer></app-players>
+
+      <app-players [players]=playersTeam2  [title]="'Team 2'"[numPlayer]=numPlayer></app-players> -->
+      <app-players [title]="'Team 1'" [numPlayer]=numPlayer [team]="1" [matchId]=matchId></app-players>
+
+      <app-players [title]="'Team 2'"[numPlayer]=numPlayer [team]="2" [matchId]=matchId></app-players>
+
         <h4 class="card-title">Score: </h4>
         
         <!-- <h4 class="card-title">Confirmations: {{totalConfirmation}}</h4> -->
-    </mat-card-content>
-    <mat-card-actions>
-        <a href="/component/match/{{matchId}}" class="btn btn-light-success">Go match detail</a>
-    </mat-card-actions>
+    </div>
+
+    <button mat-raised-button  class="btn btn-light-success" color="primary" (click)=goToDetail() >Detail</button>
+
   </mat-card>

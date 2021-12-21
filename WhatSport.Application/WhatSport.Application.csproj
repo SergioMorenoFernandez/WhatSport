@@ -18,6 +18,8 @@
 
   <ItemGroup>
     <Folder Include="Commands\Players\" />
+    <Folder Include="Queries\Equipment\" />
+    <Folder Include="Queries\Score\" />
   </ItemGroup>
 
 </Project>

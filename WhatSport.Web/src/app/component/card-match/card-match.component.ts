@@ -2,7 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatchService } from '../../services/match/match.service';
 import { Observable } from 'rxjs';
 
-import { Player } from '../../Models/Player';
+import { Match } from '../../Models/Match';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-match',
@@ -11,37 +12,32 @@ import { Player } from '../../Models/Player';
 })
 export class CardMatchComponent implements OnInit {
   @Input() matchId: number=0;
-  @Input() dateStart?: Date;
-  @Input() dateEnd?: Date;
-
+  @Input() date?: Date;
+  @Input() numPlayer: number=0;
+  
+  
   totalConfirmation: any=0;
-  players: Player[]=[];
+  match: Match= <Match>{};
 
-  constructor(private matchService: MatchService) { 
+  constructor(public router: Router, private matchService: MatchService) { 
   }
 
   ngOnInit(): void {
-    this.getPlayers();
+    this.getmatch(this.matchId);
   }
 
   randomIntFromInterval(min: number, max: number) { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
 
-  getPlayers(){
-
-    this.matchService.getPlayers(this.matchId)
-      .subscribe(data => this.players=data);
-      
-      let id = this.randomIntFromInterval(1,5);
-
-      this.players.forEach(element => {
-        element.image = 'assets/images/users/user' + id.toString()  + '.jpg'
-        
-      });
+  getmatch(matchId: number)
+  {
+    this.matchService.getMatchById(matchId)
+    .subscribe(data => this.match=data);
   }
-  
-  // const rndInt = randomIntFromInterval(1, 6)
-  // console.log(rndInt)
 
+  goToDetail(): void
+  {
+    this.router.navigate([`/component/match/${this.matchId}`]);
+  }
 }

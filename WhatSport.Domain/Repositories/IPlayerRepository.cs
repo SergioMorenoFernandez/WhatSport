@@ -13,6 +13,8 @@ namespace WhatSport.Domain.Repositories
 
         Task AddPlayerAsync(Player value, CancellationToken cancellationToken = default);
 
-        Task RemovePlayerAsync(Player value, CancellationToken cancellationToken = default);
+        void RemovePlayer(Player value, CancellationToken cancellationToken = default);
+
+        Task<Player> GetPlayerByMatchAndUserAsync(int userId, int matchId, CancellationToken cancellationToken = default);
     }
 }

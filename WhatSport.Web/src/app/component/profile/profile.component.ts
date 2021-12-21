@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
 import { UserService } from '../../services/user/user.service';
 
 import { MatchService } from '../../services/match/match.service';
 import { TokenStorageService } from '../../services/tokenStorage/token-storage.service';
-import { Match } from '../../Models/Match';
+import { User } from '../../Models/User';
 
 @Component({
   selector: 'app-profile',
@@ -11,12 +12,12 @@ import { Match } from '../../Models/Match';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  currentUser: any;
+  currentUser: User=<User>{};
   totalFriends: number=0;
   totalMatch: number=0;
   sportId: number=0;
-
-  matches: Match[]=[];
+  
+  isSuccessful = false;
 
   constructor(private token: TokenStorageService, private userService: UserService, private matchService: MatchService) { }
 
@@ -30,6 +31,8 @@ export class ProfileComponent implements OnInit {
   getTotalFriends(): void {
     this.userService.getTotalFriends()
       .subscribe(data => this.totalFriends=data);
+
+      
   }
 
   getTotalMatch(): void {
@@ -37,8 +40,10 @@ export class ProfileComponent implements OnInit {
       .subscribe(data => this.totalMatch=data);
   }
 
-  getMatchByUser(sportId:number, userId:number): void {
-    this.matchService.searchBySportAndUser(sportId,userId)
-      .subscribe(data => this.matches=data);
+  changeStatus(): void{
+    // this.userService.getFriends
+    alert(`change status: ${this.currentUser.status} to current user`)
   }
+
+
 }

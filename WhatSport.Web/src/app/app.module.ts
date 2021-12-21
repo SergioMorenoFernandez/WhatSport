@@ -14,6 +14,8 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -38,9 +40,16 @@ import { ProfileComponent } from './component/profile/profile.component';
 
 import { CardMatchComponent } from './component/card-match/card-match.component';
 import { SearchMatchesComponent } from './component/search-matches/search-matches.component';
+import { MatchesComponent } from './component/matches/matches.component';
+import { PlayersComponent } from './component/players/players.component';
+import { ClubsComponent } from './component/clubs/clubs.component';
+import { MatchDetailComponent } from './component/match-detail/match-detail.component';
+import { FriendsComponent } from './component/friends/friends.component';
 
 
 import { authInterceptorProviders } from './helper/auth.interceptor';
+
+import { AuthGuard } from './helper/AuthGuard';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -61,6 +70,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ProfileComponent,
     CardMatchComponent,
     SearchMatchesComponent,
+    MatchesComponent,
+    PlayersComponent,
+    ClubsComponent,
+    MatchDetailComponent,
+    FriendsComponent,
     
   ],
   imports: [
@@ -77,8 +91,12 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatCardModule,
     ScrollingModule,
     MatExpansionModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
   ],
   providers: [
+    
+    AuthGuard,
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy

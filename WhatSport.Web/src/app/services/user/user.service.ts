@@ -25,16 +25,29 @@ export class UserService {
   }
 
   getFriends(): Observable<any> {
-    return this.http.get<User>(apiURL+ '/friend',httpOptions).pipe(
-      catchError(this.handleError<User>(`getFriends`))
+    return this.http.get<User>(apiURL+ `/friend`,httpOptions).pipe(
+      catchError(this.handleError<User[]>(`getFriends`))
+    );
+  }
+
+  AddFriend(userFriendId: number): Observable<any> {
+     return this.http.post(apiURL+ `/friend`,{userFriendId},httpOptions).pipe(
+      catchError(this.handleError<User>(`AddFriend`))
+    );
+  }
+
+  RemoveFriends(userFriendId: number): Observable<any> {
+    return this.http.delete<User>(apiURL+ `/friend/${userFriendId}`,httpOptions).pipe(
+      catchError(this.handleError<User>(`RemoveFriends`))
     );
   }
 
   getTotalFriends(): Observable<any> {
-    return this.http.get<any>(apiURL+ '/totalfriends',httpOptions).pipe(
+    return this.http.get<any>(apiURL+ `/totalfriends`,httpOptions).pipe(
       catchError(this.handleError<any>(`getTotalFriends`))
     );
   }
+
 
   
   /**

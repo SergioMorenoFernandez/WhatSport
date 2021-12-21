@@ -1,4 +1,8 @@
 export interface Match {
     id: number;
-    name: string;
+    sportId: number;
+    dateStart: Date;
+    dateEnd: Date;
+    otherPlace: string;
+    note:string;
   }

@@ -36,6 +36,6 @@ export class NavigationComponent implements AfterViewInit {
 
   logout(): void {
     this.tokenStorageService.signOut();
-    window.location.reload();
+    window.location.replace('/login')
   }
 }

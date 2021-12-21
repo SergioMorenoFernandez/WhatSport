@@ -1,36 +1,88 @@
-<div class="container" *ngIf="currentUser; else loggedOut">
-    <h3>
-      <strong>{{ currentUser.username }}</strong> Profile
-    </h3>
-    <p>
-      <strong>id:</strong>
-      {{ currentUser.id }} 
-    </p>
-    <p>
-      <strong>Name:</strong>
-      {{ currentUser.name }}
-    </p>
-    <p>
-      <strong>LastName:</strong>
-      {{ currentUser.lastName }}
-    </p>
-    <p>
-      <strong>Role:</strong>
-      {{ currentUser.role }}
-    </p>
+<div class="col-md-12 ">
+  <div class="custom-form" >
+  <div class="row">
+    <div class="col-md-4">
+      <h3>
+        <label >
+          <strong>{{ currentUser.name }}</strong> Profile
+        </label>
+      </h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <label >
+        id
+      </label>
+    </div>
+    <div class="col-md-3">
+      <input value=" {{ currentUser.id }}" readonly/> 
+    </div>
+    <div class="col-md-3">
+      <mat-slide-toggle [(ngModel)]="currentUser.status">Status {{currentUser.status}} </mat-slide-toggle>
+    </div>    
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <label >
+        <strong>Name</strong>
+      </label>
+    </div>
+    <div class="col-md-8">
+      <input value="{{ currentUser.name }}" readonly/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <label >
+        LastName
+      </label>
+    </div>
+    <div class="col-md-8">
+      <input value="{{ currentUser.lastName }}" readonly/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <label >
+        Role
+      </label>
+    </div>
+    <div class="col-md-8">
+      <input value="{{ currentUser.role }}" readonly />
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="col-md-2">
+      <label >Total matches </label> 
+    </div>
+    <div class="col-md-2">
+      <input value="{{totalMatch}}" readonly/>
+    </div>
+    <div class="col-md-2">
+      <label >Total friends </label>
+    </div>
+    <div class="col-md-2">
+      <input value="{{totalFriends}}" readonly/>
+    </div>
+  </div>
 
-    <label >Total matches: </label> 
-    <input value="{{totalMatch}}"/>
+  <button mat-raised-button  class="btn btn-light-success" color="primary" (click)=changeStatus() >Save changes</button>
 
-
-    <label >Total friends: </label>
-    <input value="{{totalFriends}}"/>
-
-    
+  <br>
+  
   <app-search-matches [userId]=currentUser.id></app-search-matches>
   
-  </div>
+</div>
+  
+<div class="alert alert-success" *ngIf="isSuccessful">
+  Your profile has been saved successful!
+</div>
+    
+
+  
+</div>
 
   
   <ng-template #loggedOut>
