@@ -22,7 +22,10 @@ namespace WhatSport.Infrastructure.Seed
                 new Player { Id = 10, UserId=4,MatchId=4,Team=1 },
                 new Player { Id = 11, UserId=5,MatchId=5,Team=1 },
                 new Player { Id = 12, UserId=5,MatchId=6,Team=1 },
-                new Player { Id = 13, UserId=6,MatchId=10,Team=1 }
+                new Player { Id = 13, UserId=6,MatchId=10,Team=1 },
+                new Player { Id = 14, UserId=5,MatchId=9,Team=1 },
+                new Player { Id = 15, UserId=1,MatchId=9,Team=2 },
+                new Player { Id = 16, UserId=4,MatchId=9,Team=2 },
             };
 
             modelBuilder.Entity<Player>().HasData(cities);

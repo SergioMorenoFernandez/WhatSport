@@ -4,7 +4,7 @@ using WhatSport.Domain.Repositories;
 
 namespace WhatSport.Application.Queries.Matches
 {
-    internal class PlayerQueryHandler : IRequestHandler<PlayerQuery, User[]>
+    internal class PlayerQueryHandler : IRequestHandler<PlayerQuery, UserDto[]>
     {
         private readonly IPlayerRepository repository;
 
@@ -13,13 +13,13 @@ namespace WhatSport.Application.Queries.Matches
             this.repository = repository;
         }
 
-        public async Task<User[]> Handle(PlayerQuery request, CancellationToken cancellationToken)
+        public async Task<UserDto[]> Handle(PlayerQuery request, CancellationToken cancellationToken)
         {
             IEnumerable<Domain.Models.Player> value;
 
             value = await repository.GetPlayersByMatchAsync(request.MatchId, request.Team, cancellationToken);
 
-            return value.Select(c => new User(c.User)).ToArray();
+            return value.Select(c => new UserDto(c.User)).ToArray();
         }
 
     }

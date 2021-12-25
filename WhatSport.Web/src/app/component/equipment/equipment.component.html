@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div>
+                        <h4 class="card-title">List of equipment</h4>
+                    </div>
+                    <div>
+                        <button mat-raised-button  class="btn btn-light-success custom-button" color="primary" (click)=newEquipmentDialog() >Add</button>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table align-middle text-nowrap">
+                        <thead>
+                            <tr>
+                                <th class="text-dark font-medium fs-4">Descrition</th>
+                                <th class="text-dark font-medium fs-4">Player</th>
+                                <th class="text-dark font-medium fs-4">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let value of equipments'>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="ms-3">
+                                            <h5 class="mb-0 font-medium">{{value.description}}</h5>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><h5 class="mb-0 font-medium">{{value.userName}}</h5></td> 
+                                
+                                <td *ngIf="value.userName">
+                                    <a style="cursor:pointer;" [routerLink]="" (click)="unAssignEquipment(value.id)" class="material-icons md-48">remove_circle_outline</a>
+                                </td> 
+                                <td *ngIf="!value.userName">
+                                    <a style="cursor:pointer;"  [routerLink]="" (click)="assignEquipment(value.id)" class="material-icons md-48">add_circle_outline</a>
+                                </td>
+                            </tr>              
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -5,7 +5,7 @@ using WhatSport.Domain.Repositories;
 
 namespace WhatSport.Application.Queries.Users
 {
-    internal class LoginQueryHandler : IRequestHandler<LoginQuery, User>
+    internal class LoginQueryHandler : IRequestHandler<LoginQuery, UserDto>
     {
         private readonly IUserRepository repository;
 
@@ -14,14 +14,14 @@ namespace WhatSport.Application.Queries.Users
             this.repository = repository;
         }
 
-        public async Task<User> Handle(LoginQuery request, CancellationToken cancellationToken)
+        public async Task<UserDto> Handle(LoginQuery request, CancellationToken cancellationToken)
         {
             var user = await repository.GetUserByLoginAsync(request.Login, cancellationToken);
 
             if (user == null || !user.Password.Equals(request.Password.GetMd5Hash()) || !user.Status)
                 throw new UnauthorizedAccessException();
 
-            return new User(user);
+            return new UserDto(user);
         }
     }
 }

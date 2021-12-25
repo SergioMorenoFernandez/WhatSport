@@ -144,17 +144,14 @@ namespace WhatSport.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("MatchId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Number")
+                    b.Property<int>("MatchId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PlayerId")
+                    b.Property<int?>("PlayerId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -264,7 +261,7 @@ namespace WhatSport.Api.Migrations
                             DateEnd = new DateTime(2021, 12, 1, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             DateStart = new DateTime(2021, 12, 1, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             Note = "",
-                            OtherPlace = "",
+                            OtherPlace = "pistas de carranque",
                             SportId = 1
                         },
                         new
@@ -273,8 +270,8 @@ namespace WhatSport.Api.Migrations
                             CityId = 1,
                             DateEnd = new DateTime(2021, 12, 11, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             DateStart = new DateTime(2021, 12, 11, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Note = "",
-                            OtherPlace = "",
+                            Note = "Test note 1",
+                            OtherPlace = "Urb. lolo",
                             SportId = 1
                         },
                         new
@@ -284,7 +281,7 @@ namespace WhatSport.Api.Migrations
                             DateEnd = new DateTime(2021, 12, 31, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             DateStart = new DateTime(2021, 12, 31, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             Note = "",
-                            OtherPlace = "",
+                            OtherPlace = "pistas la mosca",
                             SportId = 1
                         },
                         new
@@ -293,8 +290,8 @@ namespace WhatSport.Api.Migrations
                             CityId = 1,
                             DateEnd = new DateTime(2021, 12, 21, 21, 0, 0, 0, DateTimeKind.Unspecified),
                             DateStart = new DateTime(2021, 12, 21, 20, 0, 0, 0, DateTimeKind.Unspecified),
-                            Note = "",
-                            OtherPlace = "",
+                            Note = "Test note fff",
+                            OtherPlace = "Urb. las gaviotas",
                             SportId = 1
                         },
                         new
@@ -304,7 +301,7 @@ namespace WhatSport.Api.Migrations
                             DateEnd = new DateTime(2022, 1, 8, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             DateStart = new DateTime(2022, 1, 8, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             Note = "",
-                            OtherPlace = "",
+                            OtherPlace = "Urb. ",
                             SportId = 1
                         },
                         new
@@ -313,8 +310,8 @@ namespace WhatSport.Api.Migrations
                             CityId = 2,
                             DateEnd = new DateTime(2021, 12, 18, 17, 0, 0, 0, DateTimeKind.Unspecified),
                             DateStart = new DateTime(2021, 12, 18, 16, 0, 0, 0, DateTimeKind.Unspecified),
-                            Note = "",
-                            OtherPlace = "",
+                            Note = "Test note afgds",
+                            OtherPlace = "pistas de gimnasio turu",
                             SportId = 1
                         },
                         new
@@ -324,7 +321,7 @@ namespace WhatSport.Api.Migrations
                             DateEnd = new DateTime(2021, 12, 17, 17, 0, 0, 0, DateTimeKind.Unspecified),
                             DateStart = new DateTime(2021, 12, 17, 15, 0, 0, 0, DateTimeKind.Unspecified),
                             Note = "",
-                            OtherPlace = "",
+                            OtherPlace = "Playa de huelin",
                             SportId = 2
                         },
                         new
@@ -334,7 +331,7 @@ namespace WhatSport.Api.Migrations
                             DateEnd = new DateTime(2021, 12, 16, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             DateStart = new DateTime(2021, 12, 16, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             Note = "",
-                            OtherPlace = "",
+                            OtherPlace = "Sacaba",
                             SportId = 2
                         },
                         new
@@ -343,8 +340,8 @@ namespace WhatSport.Api.Migrations
                             CityId = 1,
                             DateEnd = new DateTime(2021, 12, 31, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             DateStart = new DateTime(2021, 12, 31, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Note = "",
-                            OtherPlace = "",
+                            Note = "Test note voley 1",
+                            OtherPlace = "Parque badajo",
                             SportId = 2
                         },
                         new
@@ -354,7 +351,7 @@ namespace WhatSport.Api.Migrations
                             DateEnd = new DateTime(2021, 12, 11, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             DateStart = new DateTime(2021, 12, 11, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             Note = "",
-                            OtherPlace = "",
+                            OtherPlace = "pista voley carranque",
                             SportId = 2
                         });
                 });
@@ -508,6 +505,33 @@ namespace WhatSport.Api.Migrations
                             Note = "",
                             Team = 1,
                             UserId = 6
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Assist = false,
+                            MatchId = 9,
+                            Note = "",
+                            Team = 1,
+                            UserId = 5
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Assist = false,
+                            MatchId = 9,
+                            Note = "",
+                            Team = 2,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Assist = false,
+                            MatchId = 9,
+                            Note = "",
+                            Team = 2,
+                            UserId = 4
                         });
                 });
 
@@ -924,8 +948,7 @@ namespace WhatSport.Api.Migrations
                     b.HasOne("WhatSport.Domain.Models.Player", "Player")
                         .WithMany("Equipments")
                         .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Match");
 

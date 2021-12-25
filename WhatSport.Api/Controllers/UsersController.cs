@@ -41,7 +41,7 @@ namespace WhatSport.Api.Controllers
 
             var user = await mediator.Send(request);
 
-            return new { Token = GenerateJwtToken(user), user = user };
+            return new { Token = GenerateJwtToken(user), user };
         }
 
         [HttpPost("register")]
@@ -60,7 +60,7 @@ namespace WhatSport.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<User>> Get()
+        public async Task<ActionResult<UserDto>> Get()
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
             var query = new UserByIdQuery(userId);
@@ -76,7 +76,7 @@ namespace WhatSport.Api.Controllers
         }
 
         [HttpGet("/users/friend")]
-        public async Task<ActionResult<User[]>> GetFriends()
+        public async Task<ActionResult<UserDto[]>> GetFriends()
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
             var query = new FriendQuery(userId);
@@ -129,7 +129,7 @@ namespace WhatSport.Api.Controllers
         }
 
         [HttpGet("GetAll")]
-        public async Task<ActionResult<User[]>> GetAll()
+        public async Task<ActionResult<UserDto[]>> GetAll()
         {
             var query = new UserQuery();
 
@@ -155,7 +155,7 @@ namespace WhatSport.Api.Controllers
             return await mediator.Send(command);
         }
 
-        private string GenerateJwtToken(User user)
+        private string GenerateJwtToken(UserDto user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 

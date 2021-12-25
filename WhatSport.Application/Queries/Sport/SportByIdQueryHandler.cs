@@ -4,7 +4,7 @@ using WhatSport.Domain.Repositories;
 
 namespace WhatSport.Application.Queries.Users
 {
-    internal class SportByIdQueryHandler : IRequestHandler<SportByIdQuery, Sport>
+    internal class SportByIdQueryHandler : IRequestHandler<SportByIdQuery, SportDto>
     {
         private readonly ISportRepository repository;
 
@@ -13,11 +13,11 @@ namespace WhatSport.Application.Queries.Users
             this.repository = repository;
         }
 
-        public async Task<Sport> Handle(SportByIdQuery request, CancellationToken cancellationToken)
+        public async Task<SportDto> Handle(SportByIdQuery request, CancellationToken cancellationToken)
         {
             var value = await repository.GetSportAsync(request.Id, cancellationToken);
 
-            return new Sport(value);
+            return new SportDto(value);
         }
     }
 }

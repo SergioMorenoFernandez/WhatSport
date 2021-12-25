@@ -4,7 +4,7 @@ using WhatSport.Domain.Repositories;
 
 namespace WhatSport.Application.Queries.Clubs
 {
-    internal class ClubsQueryHandler : IRequestHandler<ClubsQuery, Club[]>
+    internal class ClubsQueryHandler : IRequestHandler<ClubsQuery, ClubDto[]>
     {
         private readonly IClubRepository repository;
 
@@ -13,11 +13,11 @@ namespace WhatSport.Application.Queries.Clubs
             this.repository = repository;
         }
 
-        public async Task<Club[]> Handle(ClubsQuery request, CancellationToken cancellationToken)
+        public async Task<ClubDto[]> Handle(ClubsQuery request, CancellationToken cancellationToken)
         {
             var clubs = await repository.GetAllClubsAsync(cancellationToken);
 
-            return clubs.Select(c => new Club(c)).ToArray();
+            return clubs.Select(c => new ClubDto(c)).ToArray();
         }
     }
 }

@@ -3,7 +3,7 @@ using WhatSport.Application.Models;
 
 namespace WhatSport.Application.Queries.Clubs
 {
-    public class ClubsQuery : IRequest<Club[]>
+    public class ClubsQuery : IRequest<ClubDto[]>
     {
         public ClubsQuery()
         {

@@ -7,6 +7,7 @@ import { Player } from '../../Models/Player';
 
 import { environment } from '../../../environments/environment';
 import { ErrorHandlingService } from '../errorHandling/errorHandling.service';
+import { Equipment } from '../..//Models/Equipment';
 
 const apiURL = environment.apiURL + '/match';
 
@@ -68,6 +69,34 @@ export class MatchService {
         console.log(`found players with params ("${matchId},${team}")`) :
         console.log(`no players found with params ("${matchId},${team}")`)),
       catchError(this.handleError<Player[]>('getPlayers', []))
+    );
+  }
+
+  getEquipments(matchId: number): Observable<Equipment[]> {
+
+    return this.http.get<Equipment[]>(`${apiURL}/${matchId}/equipment`,httpOptions).pipe(
+      tap(x => x.length ?
+        console.log(`found equipment with params ("${matchId}")`) :
+        console.log(`no equipment found with params ("${matchId}")`)),
+      catchError(this.handleError<Equipment[]>('getEquipments', []))
+    );
+  }
+
+  createEquipment(description: string, matchId: number):  Observable<any> {
+    return this.http.post(`${apiURL}/${matchId}/equipment/`,{description} , httpOptions).pipe(
+      catchError(this.errorHandlingService.handleError<any>('createEquipment', []))
+    );
+  }
+
+  assignEquipment(matchId: number, equipmentId: number):  Observable<any> {
+    return this.http.put(`${apiURL}/${matchId}/equipment/${equipmentId}/assign`, httpOptions).pipe(
+      catchError(this.errorHandlingService.handleError<any>('assignEquipment', []))
+    );
+  }
+
+  unAssignEquipment(matchId: number, equipmentId: number):  Observable<any> {
+    return this.http.put(`${apiURL}/${matchId}/equipment/${equipmentId}/unassign`, httpOptions).pipe(
+      catchError(this.errorHandlingService.handleError<any>('unAssignEquipment', []))
     );
   }
 

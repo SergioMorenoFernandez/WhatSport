@@ -1,8 +1,8 @@
 ﻿namespace WhatSport.Application.Models
 {
-    public class Club
+    public class ClubDto
     {
-        public Club(Domain.Models.Club club)
+        public ClubDto(Domain.Models.Club club)
         {
             Id = club.Id;
             Name = club.Name;

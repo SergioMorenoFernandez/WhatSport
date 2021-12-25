@@ -4,7 +4,7 @@ using WhatSport.Domain.Repositories;
 
 namespace WhatSport.Application.Queries.Matches
 {
-    internal class MatchByIdQueryHandler : IRequestHandler<MatchByIdQuery, Match>
+    internal class MatchByIdQueryHandler : IRequestHandler<MatchByIdQuery, MatchDto>
     {
         private readonly IMatchRepository repository;
 
@@ -13,11 +13,11 @@ namespace WhatSport.Application.Queries.Matches
             this.repository = repository;
         }
 
-        public async Task<Match> Handle(MatchByIdQuery request, CancellationToken cancellationToken)
+        public async Task<MatchDto> Handle(MatchByIdQuery request, CancellationToken cancellationToken)
         {
             var club = await repository.GetMatchByIdAsync(request.Id, cancellationToken);
 
-            return new Match(club);
+            return new MatchDto(club);
         }
     }
 }

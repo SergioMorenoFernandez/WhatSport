@@ -11,8 +11,8 @@ namespace WhatSport.Infrastructure.EntityConfigurations
             builder.ToTable("Equipments");
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id).ValueGeneratedOnAdd();
-            builder.Property(e => e.Name).IsRequired();
-            builder.HasOne(e => e.Match).WithMany(m => m.Equipments).HasForeignKey(e => e.MatchId).OnDelete(DeleteBehavior.Restrict);
+            builder.Property(e => e.Description).IsRequired();
+            builder.HasOne(e => e.Match).WithMany(m => m.Equipments).HasForeignKey(e => e.MatchId).IsRequired().OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(e => e.Player).WithMany(p => p.Equipments).HasForeignKey(e => e.PlayerId).OnDelete(DeleteBehavior.Restrict);
         }
     }

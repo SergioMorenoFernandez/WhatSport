@@ -1,8 +1,8 @@
 ﻿namespace WhatSport.Application.Models
 {
-    public class Level
+    public class LevelDto
     {
-        public Level(Domain.Models.Level level)
+        public LevelDto(Domain.Models.Level level)
         {
             Id = level.Id;
             SportName = level.Sport?.Name ?? throw new ArgumentException("Sport of level cannot be null");

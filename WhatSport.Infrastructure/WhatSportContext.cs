@@ -53,6 +53,7 @@ namespace WhatSport.Infrastructure
             PlayerSeeder.Seed(modelBuilder);
             ScoreSeeder.Seed(modelBuilder);
             ScoreConfirmationSeeder.Seed(modelBuilder);
+            EquipmentSeeder.Seed(modelBuilder);
         }
 
         async Task<bool> IUnitOfWork.SaveChangesAsync(CancellationToken cancellationToken)
@@ -60,5 +61,7 @@ namespace WhatSport.Infrastructure
             await base.SaveChangesAsync(cancellationToken);
             return true;
         }
+
+
     }
 }

@@ -3,7 +3,7 @@ using WhatSport.Application.Models;
 
 namespace WhatSport.Application.Queries.Countries
 {
-    public class CountryByIdQuery : IRequest<Country>
+    public class CountryByIdQuery : IRequest<CountryDto>
     {
         public CountryByIdQuery(int id)
         {

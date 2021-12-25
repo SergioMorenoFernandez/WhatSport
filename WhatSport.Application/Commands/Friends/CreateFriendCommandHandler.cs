@@ -22,7 +22,7 @@ namespace WhatSport.Application.Commands.Users
                 FriendUserId = request.UserFriendId
             };
 
-            repository.AddFriendAsync(value);
+            await repository.AddFriendAsync(value);
 
             return await repository.UnitOfWork.SaveChangesAsync(cancellationToken);
         }

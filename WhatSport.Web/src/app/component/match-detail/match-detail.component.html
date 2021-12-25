@@ -1,6 +1,5 @@
-<p>match-detail: {{ id }} works!</p>
 <div class="col-md-12">
-  <form class="custom-form" novalidate>
+  <div class="custom-form" novalidate>
     <div class="row">
       <div class="col-md-4">
         <h3>
@@ -49,9 +48,30 @@
       </div>
     </div>
     <hr/>
+    <div class="row">
+      <div class="col-6">
+          <div class="card">
+            <div class="card-body">
+              <div class="col-md-3" *ngIf="sport">
+                <app-players [team]="1" [numPlayer]="sport.numberPlayers/2" [matchId]=match.id></app-players>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="col-md-6" *ngIf="sport">
+        <div class="card">
+          <div class="card-body">
+            <div class="col-md-3" *ngIf="sport">
+              <app-players [team]="2" [numPlayer]="sport.numberPlayers/2" [matchId]=match.id></app-players>
+            </div>
+          </div>
+        </div>
+      </div>
+    <hr/>
     <div class="col-md-12" *ngIf="sport">
-      <app-players [team]="1" [numPlayer]="sport.numberPlayers/2" [matchId]=match.id></app-players>
-      <app-players [team]="2" [numPlayer]="sport.numberPlayers/2" [matchId]=match.id></app-players>
+      <app-equipment [matchId]=match.id></app-equipment>
     </div>
-  </form>
+  </div>
+  
+  
 </div>

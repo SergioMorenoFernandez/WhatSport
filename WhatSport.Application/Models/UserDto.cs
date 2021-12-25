@@ -1,8 +1,8 @@
 ﻿namespace WhatSport.Application.Models
 {
-    public class User
+    public class UserDto
     {
-        public User(Domain.Models.User user)
+        public UserDto(Domain.Models.User user)
         {
             Id = user.Id;
             Login = user.Login;

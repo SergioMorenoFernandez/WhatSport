@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ComponentsRoutes } from './component.routing';
+import { NewScoreDialogComponent } from './score/new-score-dialog/new-score-dialog.component';
 
 
 @NgModule({
@@ -16,6 +17,10 @@ import { ComponentsRoutes } from './component.routing';
     NgbModule,
   ],
   declarations: [
+  
+  
+  
+    NewScoreDialogComponent
   ]
 })
 export class ComponentsModule { }

@@ -3,7 +3,7 @@ using WhatSport.Application.Models;
 
 namespace WhatSport.Application.Queries.Levels
 {
-    public class GetUserLevelsQuery : IRequest<Level[]>
+    public class GetUserLevelsQuery : IRequest<LevelDto[]>
     {
         public GetUserLevelsQuery(int userId)
         {

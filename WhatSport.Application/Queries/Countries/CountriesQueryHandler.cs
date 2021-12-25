@@ -4,7 +4,7 @@ using WhatSport.Domain.Repositories;
 
 namespace WhatSport.Application.Queries.Countries
 {
-    internal class CountriesQueryHandler : IRequestHandler<CountriesQuery, Country[]>
+    internal class CountriesQueryHandler : IRequestHandler<CountriesQuery, CountryDto[]>
     {
         private readonly ICountryRepository repository;
 
@@ -13,11 +13,11 @@ namespace WhatSport.Application.Queries.Countries
             this.repository = repository;
         }
 
-        public async Task<Country[]> Handle(CountriesQuery request, CancellationToken cancellationToken)
+        public async Task<CountryDto[]> Handle(CountriesQuery request, CancellationToken cancellationToken)
         {
             var countries = await repository.GetAllCountriesAsync(cancellationToken);
 
-            return countries.Select(c => new Country(c)).ToArray();
+            return countries.Select(c => new CountryDto(c)).ToArray();
         }
     }
 }

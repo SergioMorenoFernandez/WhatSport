@@ -3,7 +3,7 @@ using WhatSport.Application.Models;
 
 namespace WhatSport.Application.Queries.Matches
 {
-    public  class FriendQuery : IRequest<User[]>
+    public  class FriendQuery : IRequest<UserDto[]>
     {
         public FriendQuery(int userId)
         {

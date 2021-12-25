@@ -11,11 +11,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 //Angular material
 import { MatSelectModule } from '@angular/material/select';
-import {MatCardModule} from '@angular/material/card';
-import {ScrollingModule} from '@angular/cdk/scrolling';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { ScrollingModule}  from '@angular/cdk/scrolling';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogModule} from '@angular/material/dialog';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -46,6 +47,9 @@ import { ClubsComponent } from './component/clubs/clubs.component';
 import { MatchDetailComponent } from './component/match-detail/match-detail.component';
 import { FriendsComponent } from './component/friends/friends.component';
 
+import { EquipmentComponent } from './component/equipment/equipment.component';
+import { NewEquipmentDialogComponent } from './component/equipment/new-equipment-dialog/new-equipment-dialog.component';
+import { ScoreComponent } from './component/score/score.component';
 
 import { authInterceptorProviders } from './helper/auth.interceptor';
 
@@ -75,6 +79,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ClubsComponent,
     MatchDetailComponent,
     FriendsComponent,
+    EquipmentComponent,
+    NewEquipmentDialogComponent,
+    ScoreComponent,
     
   ],
   imports: [
@@ -93,6 +100,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatExpansionModule,
     MatSlideToggleModule,
     MatSnackBarModule,
+    MatDialogModule,
   ],
   providers: [
     

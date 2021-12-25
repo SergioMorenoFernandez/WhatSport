@@ -1,4 +1,4 @@
-  <mat-card class="card">
+<mat-card class="card">
     <mat-card-header class="header">
       <div mat-card-avatar ></div>
       <mat-card-title>Match</mat-card-title>
@@ -9,18 +9,33 @@
       </mat-card-subtitle>
     
     </mat-card-header>
-    <div class="offset-md-1">
-      <!-- <app-players [players]=playersTeam1 [title]="'Team 1'" [numPlayer]=numPlayer></app-players>
-
-      <app-players [players]=playersTeam2  [title]="'Team 2'"[numPlayer]=numPlayer></app-players> -->
-      <app-players [title]="'Team 1'" [numPlayer]=numPlayer [team]="1" [matchId]=matchId></app-players>
-
-      <app-players [title]="'Team 2'"[numPlayer]=numPlayer [team]="2" [matchId]=matchId></app-players>
-
-        <h4 class="card-title">Score: </h4>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-6">
+            <div class="card">
+              <div class="card-body">
+                <div class="col-md-3">
+                  <app-players [title]="'Team 1'" [numPlayer]=numPlayer [team]="1" [matchId]=matchId></app-players>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <div class="col-md-3">
+                <app-players [title]="'Team 2'"[numPlayer]=numPlayer [team]="2" [matchId]=matchId></app-players>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr/>
         
-        <!-- <h4 class="card-title">Confirmations: {{totalConfirmation}}</h4> -->
     </div>
+
+    <h4 class="card-title">Score: </h4>
+    <!-- <h4 class="card-title">Confirmations: {{totalConfirmation}}</h4> -->
 
     <button mat-raised-button  class="btn btn-light-success" color="primary" (click)=goToDetail() >Detail</button>
 

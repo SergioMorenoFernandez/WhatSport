@@ -4,7 +4,7 @@ using WhatSport.Domain.Repositories;
 
 namespace WhatSport.Application.Queries.Levels
 {
-    internal class GetUserLevelsQueryHandler : IRequestHandler<GetUserLevelsQuery, Level[]>
+    internal class GetUserLevelsQueryHandler : IRequestHandler<GetUserLevelsQuery, LevelDto[]>
     {
         private readonly ILevelRepository repository;
 
@@ -13,11 +13,11 @@ namespace WhatSport.Application.Queries.Levels
             this.repository = repository;
         }
 
-        public async Task<Level[]> Handle(GetUserLevelsQuery request, CancellationToken cancellationToken)
+        public async Task<LevelDto[]> Handle(GetUserLevelsQuery request, CancellationToken cancellationToken)
         {
             var levels = await repository.GetLevelsByUserAsync(request.UserId, cancellationToken);
 
-            return levels.Select(l => new Level(l)).ToArray();
+            return levels.Select(l => new LevelDto(l)).ToArray();
         }
     }
 }

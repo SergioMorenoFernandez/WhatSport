@@ -4,7 +4,7 @@ using WhatSport.Domain.Repositories;
 
 namespace WhatSport.Application.Queries.Matches
 {
-    internal class FriendQueryHandler : IRequestHandler<FriendQuery, User[]>
+    internal class FriendQueryHandler : IRequestHandler<FriendQuery, UserDto[]>
     {
         private readonly IUserRepository repository;
 
@@ -13,17 +13,17 @@ namespace WhatSport.Application.Queries.Matches
             this.repository = repository;
         }
 
-        public async Task<User[]> Handle(FriendQuery request, CancellationToken cancellationToken)
+        public async Task<UserDto[]> Handle(FriendQuery request, CancellationToken cancellationToken)
         {
 
             var value = await repository.GetFriendsAsync(request.UserId, cancellationToken);
 
             if(value == null)
             {
-                return Array.Empty<User>();
+                return Array.Empty<UserDto>();
             }
 
-            return value.Select(c => new User(c)).ToArray();
+            return value.Select(c => new UserDto(c)).ToArray();
         }
 
     }

@@ -1,8 +1,8 @@
 ﻿namespace WhatSport.Application.Models
 {
-    public class Match
+    public class MatchDto
     {
-        public Match(Domain.Models.Match match)
+        public MatchDto(Domain.Models.Match match)
         {
             Id = match.Id;
             DateStart = match.DateStart;

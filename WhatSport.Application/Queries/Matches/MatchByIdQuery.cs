@@ -3,7 +3,7 @@ using WhatSport.Application.Models;
 
 namespace WhatSport.Application.Queries.Matches
 {
-    public class MatchByIdQuery : IRequest<Match>
+    public class MatchByIdQuery : IRequest<MatchDto>
     {
         public MatchByIdQuery(int id)
         {

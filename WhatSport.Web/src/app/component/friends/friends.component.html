@@ -1,10 +1,10 @@
-<div class="container" *ngIf="currentUser; else loggedOut">
+
 <div class="row">
     <div class="col-12">
-      <div class="card">
+        <div class="card">
         <div class="card-body">
-          <h4 class="card-title">List of friends</h4>
-          <div class="table-responsive">
+            <h4 class="card-title">List of friends</h4>
+            <div class="table-responsive">
             <table class="table align-middle text-nowrap">
                 <thead>
                     <tr>
@@ -33,12 +33,7 @@
             </table>
         </div>
         </div>
-      </div>
+        </div>
     </div>
-  </div>
-
 </div>
 
-<ng-template #loggedOut>
-    Please login.
-  </ng-template>

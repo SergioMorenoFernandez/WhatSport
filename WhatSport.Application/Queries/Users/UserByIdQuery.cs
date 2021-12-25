@@ -3,7 +3,7 @@ using WhatSport.Application.Models;
 
 namespace WhatSport.Application.Queries.Users
 {
-    public class UserByIdQuery : IRequest<User>
+    public class UserByIdQuery : IRequest<UserDto>
     {
 
         public UserByIdQuery()

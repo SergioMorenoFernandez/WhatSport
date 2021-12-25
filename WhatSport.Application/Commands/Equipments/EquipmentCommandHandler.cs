@@ -1,9 +1,8 @@
 ﻿using MediatR;
 using WhatSport.Domain.Models;
 using WhatSport.Domain.Repositories;
-using WhatSport.Domain.Extensions;
 
-namespace WhatSport.Application.Commands.Scores
+namespace WhatSport.Application.Commands.Equipments
 {
     internal class EquipmentCommandHandler : IRequestHandler<EquipmentCommand, bool>
     {
@@ -19,7 +18,7 @@ namespace WhatSport.Application.Commands.Scores
             var value = new Equipment
             {
                 MatchId = request.MatchId,
-                Name = request.Name,
+                Description = request.Description,
             };
 
             await repository.AddEquipmentAsync(value, cancellationToken);

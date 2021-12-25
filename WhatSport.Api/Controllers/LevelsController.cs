@@ -23,7 +23,7 @@ namespace WhatSport.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Level[]>> GetUserLevels()
+        public async Task<ActionResult<LevelDto[]>> GetUserLevels()
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
             var query = new GetUserLevelsQuery(userId);

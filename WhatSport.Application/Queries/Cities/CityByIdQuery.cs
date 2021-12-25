@@ -3,7 +3,7 @@ using WhatSport.Application.Models;
 
 namespace WhatSport.Application.Queries.Cities
 {
-    public class CityByIdQuery : IRequest<City>
+    public class CityByIdQuery : IRequest<CityDto>
     {
         public CityByIdQuery(int id)
         {

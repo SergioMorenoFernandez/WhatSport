@@ -1,8 +1,8 @@
 ﻿namespace WhatSport.Application.Models
 {
-    public class Country
+    public class CountryDto
     {
-        public Country(Domain.Models.Country country)
+        public CountryDto(Domain.Models.Country country)
         {
             Id = country.Id;
             Name = country.Name;

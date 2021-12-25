@@ -3,7 +3,7 @@ using WhatSport.Application.Models;
 
 namespace WhatSport.Application.Queries.Matches
 {
-    public  class PlayerQuery : IRequest<User[]>
+    public  class PlayerQuery : IRequest<UserDto[]>
     {
         public PlayerQuery(int matchId, int team)
         {

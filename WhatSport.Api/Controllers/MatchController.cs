@@ -2,10 +2,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using WhatSport.Api.Models;
+using WhatSport.Application.Commands.Equipments;
 using WhatSport.Application.Commands.Matches;
 using WhatSport.Application.Commands.Scores;
 using WhatSport.Application.Models;
+using WhatSport.Application.Queries.Equipments;
 using WhatSport.Application.Queries.Matches;
 using WhatSport.Domain.Extensions;
 
@@ -26,7 +27,7 @@ namespace WhatSport.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Match[]>> Get([FromQuery] MatchQuery query)
+        public async Task<ActionResult<MatchDto[]>> Get([FromQuery] MatchQuery query)
         {
             logger.LogInformation(
                "----- Sending command: {CommandName}: ({@Command})",
@@ -37,7 +38,7 @@ namespace WhatSport.Api.Controllers
         }
 
         [HttpGet("{id}/team/{idTeam}")]
-        public async Task<ActionResult<User[]>> GetPlayers([FromRoute] int id, [FromRoute] int idTeam)
+        public async Task<ActionResult<UserDto[]>> GetPlayers([FromRoute] int id, [FromRoute] int idTeam)
         {
             var query = new PlayerQuery(id,idTeam);
 
@@ -52,7 +53,7 @@ namespace WhatSport.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Match>> GetById([FromRoute] int id)
+        public async Task<ActionResult<MatchDto>> GetById([FromRoute] int id)
         {
             var query = new MatchByIdQuery(id);
 
@@ -123,83 +124,96 @@ namespace WhatSport.Api.Controllers
             return await mediator.Send(command);
         }
 
-        [HttpPost("{id}/equipment")]
-        public async Task<ActionResult<bool>> AddEquipment([FromRoute] int id, [FromBody] PlayerJoin request)
+        [HttpGet("{matchid}/equipment")]
+        public async Task<ActionResult<EquipmentDto[]>> GetEquipments([FromRoute] int matchid)
         {
-            //var command = new JoinMatchCommand(request.UserId, request.Team, id);
 
-            //logger.LogInformation(
-            //   "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
-            //   command.GetGenericTypeName(),
-            //   nameof(command.MatchId),
-            //   command.MatchId,
-            //   command);
+            var query = new EquipmentQuery (matchid);
+
+            logger.LogInformation(
+               "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
+               query.GetGenericTypeName(),
+               nameof(query.MatchId),
+               query.MatchId,
+               query);
 
 
-            //return await mediator.Send(command);
+            return await mediator.Send(query);
 
-            return true;
         }
 
-        [HttpDelete("{id}/equipment/{idEquipment}")]
-        public async Task<ActionResult<bool>> RemmoveEquipment([FromRoute] int id, [FromRoute] int idEquipment)
+        [HttpPost("{matchid}/equipment")]
+        public async Task<ActionResult<bool>> AddEquipment([FromRoute] int matchid, [FromBody] EquipmentCommand command)
         {
-            //var command = new JoinMatchCommand(request.UserId, request.Team, id);
+            command.MatchId = matchid;
 
-            //logger.LogInformation(
-            //   "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
-            //   command.GetGenericTypeName(),
-            //   nameof(command.MatchId),
-            //   command.MatchId,
-            //   command);
+            logger.LogInformation(
+               "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
+               command.GetGenericTypeName(),
+               nameof(command.MatchId),
+               command.MatchId,
+               command);
 
 
-            //return await mediator.Send(command);
-
-            return true;
+            return await mediator.Send(command);
         }
 
-        [HttpPut("{id}/equipment/{idEquipment}/assign")]
-        public async Task<ActionResult<bool>> AssignEquipment([FromRoute] int id, [FromRoute] int idEquipment)
+        [HttpDelete("{matchid}/equipment/{equipmentId}")]
+        public async Task<ActionResult<bool>> RemoveEquipment([FromRoute] int matchid, [FromRoute] int equipmentId)
         {
-            //var command = new JoinMatchCommand(request.UserId, request.Team, id);
+            var command = new DeleteEquipmentCommand(equipmentId, matchid);
 
-            //logger.LogInformation(
-            //   "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
-            //   command.GetGenericTypeName(),
-            //   nameof(command.MatchId),
-            //   command.MatchId,
-            //   command);
+            logger.LogInformation(
+               "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
+               command.GetGenericTypeName(),
+               nameof(command.Id),
+               command.Id,
+               command);
 
 
-            //return await mediator.Send(command);
-
-            return true;
+            return await mediator.Send(command);
         }
 
-        [HttpPut("{id}/equipment/{idEquipment}/unassign")]
-        public async Task<ActionResult<bool>> UnassignEquipment([FromRoute] int id, [FromRoute] int idEquipment)
+        [HttpPut("{matchId}/equipment/{equipmentId}/assign")]
+        public async Task<ActionResult<bool>> AssignEquipment([FromRoute] int matchId, [FromRoute] int equipmentId)
         {
-            //var command = new JoinMatchCommand(request.UserId, request.Team, id);
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+            var command = new AssignEquipmentCommand(equipmentId, userId, matchId,true);
 
-            //logger.LogInformation(
-            //   "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
-            //   command.GetGenericTypeName(),
-            //   nameof(command.MatchId),
-            //   command.MatchId,
-            //   command);
+            logger.LogInformation(
+               "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
+               command.GetGenericTypeName(),
+               nameof(command.EquipmentId),
+               command.EquipmentId,
+               command);
 
 
-            //return await mediator.Send(command);
+            return await mediator.Send(command);
 
-            return true;
         }
 
-        [HttpPost("{id}/score")]
-        public async Task<ActionResult<bool>> AddScore([FromRoute] int id, [FromBody] ScoreCommand command)
+        [HttpPut("{matchId}/equipment/{equipmentId}/unassign")]
+        public async Task<ActionResult<bool>> UnassignEquipment([FromRoute] int matchId, [FromRoute] int equipmentId)
+        {
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+            var command = new AssignEquipmentCommand(equipmentId, userId, matchId, false);
+
+            logger.LogInformation(
+               "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
+               command.GetGenericTypeName(),
+               nameof(command.EquipmentId),
+               command.EquipmentId,
+               command);
+
+
+            return await mediator.Send(command);
+        }
+
+        [HttpPost("{matchId}/score")]
+        public async Task<ActionResult<bool>> AddScore([FromRoute] int matchId, [FromBody] ScoreCommand command)
         {
 
-            command.MatchId= id;
+            command.MatchId = matchId;
 
             logger.LogInformation(
                "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
@@ -213,11 +227,11 @@ namespace WhatSport.Api.Controllers
 
         }
 
-        [HttpPut("{id}/score/Confirm")]
-        public async Task<ActionResult<bool>> ConfirmScore([FromRoute] int id)
+        [HttpPut("{matchId}/score/Confirm")]
+        public async Task<ActionResult<bool>> ConfirmScore([FromRoute] int matchId)
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
-            var command = new ScoreConfirmationCommand(id,userId);
+            var command = new ScoreConfirmationCommand(matchId, userId);
 
             logger.LogInformation(
                "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",

@@ -1,0 +1,19 @@
+  <div class="col-md-12">
+    <label>Description</label>
+        <input
+          class="form-control"
+          [(ngModel)]="description"
+          required
+        />
+        <div class="alert-danger" *ngIf="!isValid">
+          <div *ngIf="!isValid">Description is required</div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <button class="btn btn-light-success"(click)="onNoClick()">Cancel</button>
+          </div>
+          <div class="col-md-6">
+              <button class="btn btn-light-success" (click)="createEquipment()">Add</button>
+          </div>
+        </div>
+  </div>

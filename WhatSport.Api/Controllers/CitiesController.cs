@@ -23,7 +23,7 @@ namespace WhatSport.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<City[]>> GetAll()
+        public async Task<ActionResult<CityDto[]>> GetAll()
         {
             var query = new CitiesQuery();
 
@@ -36,7 +36,7 @@ namespace WhatSport.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<City>> GetById([FromRoute] int id)
+        public async Task<ActionResult<CityDto>> GetById([FromRoute] int id)
         {
             var query = new CityByIdQuery(id);
 
