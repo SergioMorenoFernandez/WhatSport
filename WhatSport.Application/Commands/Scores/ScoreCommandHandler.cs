@@ -20,7 +20,8 @@ namespace WhatSport.Application.Commands.Scores
             {
                 MatchId = request.MatchId,
                 Team=request.Team,
-                Value = request.Value
+                Value = request.Value,
+                Number = request.Number,
             };
 
             await repository.AddScoreAsync(score, cancellationToken);
