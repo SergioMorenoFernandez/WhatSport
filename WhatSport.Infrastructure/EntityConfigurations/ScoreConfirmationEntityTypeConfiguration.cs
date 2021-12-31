@@ -11,8 +11,9 @@ namespace WhatSport.Infrastructure.EntityConfigurations
             builder.ToTable("ScoreConfirmations");
             builder.HasKey(s => s.Id);
             builder.Property(s => s.Id).ValueGeneratedOnAdd();
-            builder.HasOne(s => s.Player).WithMany(p => p.ScoreConfirmations).HasForeignKey(s => s.PlayerId).OnDelete(DeleteBehavior.Restrict);
-            builder.HasOne(s => s.Score).WithMany(s => s.ScoreConfirmations).HasForeignKey(s => s.ScoreId).OnDelete(DeleteBehavior.Restrict);
+            //builder.HasOne(s => s.Player).WithMany(p => p.ScoreConfirmations).HasForeignKey(s => s.PlayerId).OnDelete(DeleteBehavior.Restrict);
+            //builder.HasOne(s => s.Score).WithMany(s => s.ScoreConfirmations).HasForeignKey(s => s.ScoreId).OnDelete(DeleteBehavior.Restrict);
+
         }
     }
 }

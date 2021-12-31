@@ -4,7 +4,7 @@ using WhatSport.Domain.Repositories;
 
 namespace WhatSport.Application.Commands.Matches
 {
-    public class CreateMatchCommandHandler : IRequestHandler<CreateMatchCommand, bool>
+    public class CreateMatchCommandHandler : IRequestHandler<CreateMatchCommand, int>
     {
         private readonly IMatchRepository repository;
 
@@ -13,13 +13,13 @@ namespace WhatSport.Application.Commands.Matches
             this.repository = repository;
         }
 
-        public async Task<bool> Handle(CreateMatchCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CreateMatchCommand request, CancellationToken cancellationToken)
         {
             var value = new Match
             {
                 ClubId= request.ClubId,
                 SportId= request.SportId,
-                DateEnd= request.DateEnd,
+                TimeInMinutes= request.TimeInMinutes,
                 DateStart= request.DateStart,
                 Note= request.Note,
                 OtherPlace= request.OtherPlace
@@ -27,7 +27,9 @@ namespace WhatSport.Application.Commands.Matches
 
             await repository.AddMatchAsync(value, cancellationToken);
 
-            return await repository.UnitOfWork.SaveChangesAsync(cancellationToken);
+            await repository.UnitOfWork.SaveChangesAsync(cancellationToken);
+
+            return value.Id;
         }
     }
 }

@@ -39,5 +39,6 @@ namespace WhatSport.Infrastructure.Repositories
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);
         }
+
     }
 }

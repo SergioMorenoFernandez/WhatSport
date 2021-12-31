@@ -6,7 +6,7 @@
         {
             Id = match.Id;
             DateStart = match.DateStart;
-            DateEnd= match.DateEnd;
+            TimeInMinutes = match.TimeInMinutes;
             OtherPlace = match.OtherPlace;
             Note = match.Note;
             SportId= match.SportId;
@@ -15,7 +15,7 @@
 
         public int Id { get; set; }
         public DateTime? DateStart { get; set; }
-        public DateTime? DateEnd { get; set; } 
+        public int? TimeInMinutes { get; set; }
         public string OtherPlace { get; set; } = string.Empty;
         public string Note { get; set; } = string.Empty;
 

@@ -17,6 +17,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -50,6 +52,8 @@ import { FriendsComponent } from './component/friends/friends.component';
 import { EquipmentComponent } from './component/equipment/equipment.component';
 import { NewEquipmentDialogComponent } from './component/equipment/new-equipment-dialog/new-equipment-dialog.component';
 import { ScoreComponent } from './component/score/score.component';
+import { NewScoreDialogComponent } from './component/score/new-score-dialog/new-score-dialog.component';
+import { NewMatchComponent } from './component/matches/new-match/new-match.component';
 
 import { authInterceptorProviders } from './helper/auth.interceptor';
 
@@ -82,7 +86,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     EquipmentComponent,
     NewEquipmentDialogComponent,
     ScoreComponent,
-    
+    NewScoreDialogComponent,
+    NewMatchComponent
   ],
   imports: [
     CommonModule,
@@ -101,6 +106,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatSlideToggleModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
   ],
   providers: [
     

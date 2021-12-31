@@ -1,19 +1,14 @@
 <div class="col-md-12">
+  
+  <h1 class="col-md-12" align="center">Match Detail</h1>
+  
   <div class="custom-form" novalidate>
-    <div class="row">
-      <div class="col-md-4">
-        <h3>
-          <label>
-            Match Detail
-          </label>
-        </h3>
-      </div>
-    </div>
+
     <div class="row">
       <div class="col-md-2">
         <label>Sport: </label>
       </div>
-      <div class="col-md-7">
+      <div class="col-md-10">
         <input value="{{sport?.name}}" readonly />
       </div>
     </div>
@@ -29,14 +24,17 @@
       <div class="col-md-2">
         <label>Date Start: </label>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-4">
         <input value="{{match.dateStart | date:'HH:mm dd/M/yyyy' }}" readonly />
+      </div>
+      <div class="col-md-1">
+
       </div>
       <div class="col-md-2">
         <label>Duration: </label>
       </div>
-      <div class="col-md-2">
-        <input value="{{duration}}" readonly />
+      <div class="col-md-3">
+        <input value="{{match.timeInMinutes}}" readonly />
       </div>
     </div>
     <div class="row">
@@ -70,6 +68,10 @@
     <hr/>
     <div class="col-md-12" *ngIf="sport">
       <app-equipment [matchId]=match.id></app-equipment>
+    </div>
+    <hr/>
+    <div class="col-md-12" *ngIf="sport">
+      <app-score [matchId]=match.id [numTimes]="sport.numberTimes"></app-score>
     </div>
   </div>
   

@@ -1,0 +1,62 @@
+
+<div class="col-md-12">
+  <h1 class="col-md-12" align="center">New Match</h1>
+    <form class="custom-form"
+      *ngIf="!isValid"
+      name="form"
+      (ngSubmit)="f.form.valid && createMatch()"
+      #f="ngForm"
+      novalidate
+    >
+
+    <label>Select sport</label>
+    <mat-select [formControl]="sportControl" required >
+      <mat-option *ngFor="let sport of lista" [value]="sport" >
+        {{sport.name}}
+      </mat-option>
+    </mat-select>
+    <div class="alert-danger" *ngIf="!this.sportControl.value && f.submitted">
+      Sport is required
+    </div>
+
+
+    <label for="dateStart">Date start</label>
+        <input type="datetime-local" class="form-control"
+          name="dateStart"[(ngModel)]="match.dateStart"
+          required #dateStart="ngModel"
+        />
+        <div class="alert-danger" *ngIf="dateStart.errors && f.submitted">
+          Date start is required
+        </div>
+
+        <label for="dateEnd">Duration</label>
+        <input class="form-control"
+          name="duration"[(ngModel)]="match.timeInMinutes"
+          required #duration="ngModel" />
+
+        <div class="alert-danger" *ngIf="duration.errors && f.submitted">
+          Duration in minutes is required.
+        </div> 
+
+        <label for="Place">Place</label>
+        <input type="text" class="form-control" name="place"
+          [(ngModel)]="match.otherPlace" required minlength="5"
+          #place="ngModel"/>
+
+        <div class="alert-danger" *ngIf="place.errors && f.submitted">
+          <div *ngIf="place.errors['required']">Place is required</div>
+          <div *ngIf="place.errors['minlength']">Place must be at least 5 characters</div>
+        </div>
+
+        <label for="note">Note</label>
+        <input class="form-control" name="note"
+          [(ngModel)]=match.note #note="ngModel"
+        />
+
+        <button class="btn btn-light-success" color="primary">Create</button>
+        
+      <div class="alert alert-warning" *ngIf="f.submitted && !isValid">
+        New match failed!<br />{{ errorMessage }}
+      </div>
+    </form>
+</div>

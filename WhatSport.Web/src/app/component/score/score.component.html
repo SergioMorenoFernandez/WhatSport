@@ -1,41 +1,58 @@
+
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div>
-                        <h4 class="card-title">Score</h4>
-                    </div>
-                    <div *ngIf="scores.lenght > 0">
+                    
+                        <div class="col-md-5">
+                            <h4 class="card-title">Score</h4>
+                        </div>
+                        <!-- <div *ngIf="scoreFinal?.length != 0"> -->
+                            <div class="col-md-3" *ngIf="scoreFinal?.length != 0">
+                                <label>Nº Confirmations:</label>
+                            </div>
+                            <div class="col-md-1" *ngIf="scoreFinal?.length != 0">
+                                <input value="{{confirmations}}" readonly/>
+                            </div>
+                        <!-- </div> -->
+                    
+                </div>
+                <div class="row">
+                    <div *ngIf="!hasscores()" >
                         <button mat-raised-button   class="btn btn-light-success custom-button" color="primary" (click)=newScoreDialog() >Add</button>
                     </div>
+
+                    <div *ngIf="hasscores()">
+                        <button mat-raised-button   class="btn btn-light-success custom-button" color="primary" (click)=confirmScore() >Confirm</button>
+                    </div>
+
+
                 </div>
 
                 <div class="table-responsive">
                     <table class="table align-middle text-nowrap">
                         <thead>
                             <tr>
-                                <th class="text-dark font-medium fs-4">Descrition</th>
-                                <th class="text-dark font-medium fs-4">Player</th>
-                                <th class="text-dark font-medium fs-4">Action</th>
+                                <th class="text-dark font-medium fs-4"></th>
+                                <th class="text-dark font-medium fs-4">Team 1</th>
+                                <th class="text-dark font-medium fs-4">Team 2</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor='let value of scores'>
+                            <tr *ngFor='let value of scoreFinal; let i = index'>
+                                <td>Time {{i+1}}</td>
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <div class="ms-3">
-                                            <h5 class="mb-0 font-medium">{{value.description}}</h5>
+                                            <h5 class="mb-0 font-medium">{{value?.team1}}</h5>
                                         </div>
                                     </div>
                                 </td>
-                                <td><h5 class="mb-0 font-medium">{{value.userName}}</h5></td> 
-                                
-                                <td *ngIf="value.userName">
-                                    <a style="cursor:pointer;" [routerLink]="" (click)="unAssignEquipment(value.id)" class="material-icons md-48">remove_circle_outline</a>
-                                </td> 
-                                <td *ngIf="!value.userName">
-                                    <a style="cursor:pointer;"  [routerLink]="" (click)="assignEquipment(value.id)" class="material-icons md-48">add_circle_outline</a>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <h5 class="mb-0 font-medium"> {{value?.team2}}</h5>
+                                    </div>
                                 </td>
                             </tr>              
                         </tbody>

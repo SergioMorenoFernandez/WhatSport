@@ -20,9 +20,6 @@ export class MatchDetailComponent implements OnInit {
   errorMessage = '';
 
   sport?: Sport;
-  dateStart: string='';
-  duration?: number;
-
   match: Match = <Match>{};
 
 
@@ -45,10 +42,4 @@ export class MatchDetailComponent implements OnInit {
     return this.sportService.getSportById(this.match.sportId)
   }
 
-  calculateDuration(startDate: Date, endDate: Date) : number {
-    let endDateUTC = Date.UTC(endDate.getFullYear(), endDate.getMonth(), endDate.getDay(), endDate.getHours(), endDate.getMinutes());
-    let startDateUTC = Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDay(), startDate.getHours(), startDate.getMinutes());
-
-    return Math.floor((endDateUTC - startDateUTC) / (1000 * 60 * 60 * 24));
-  }
 }

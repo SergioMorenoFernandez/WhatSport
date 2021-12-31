@@ -1,1 +1,67 @@
-<p>new-score-dialog works!</p>
+
+<div class="col-md-12">
+    <div class="table-responsive">
+        <table class="table align-middle text-nowrap">
+            <thead>
+                <tr>
+                    <th class="text-dark font-medium fs-4"></th>
+                    <th class="text-dark font-medium fs-4">Team 1</th>
+                    <th class="text-dark font-medium fs-4">Team 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr *ngIf="scoresDialog.length>=1">
+                    <td>Time 1</td>
+                    <td>
+                        <div class="d-flex align-items-center col-md-1">
+                            <input name="team11" [(ngModel)]="scoresDialog[0].team1" required #team11="ngModel">
+                        </div>
+                    </td>
+                    <td >
+                        <div class="d-flex align-items-center col-md-1">
+                            <input name="team21" [(ngModel)]="scoresDialog[0].team2" required #team21="ngModel">
+                        </div>
+                    </td>
+                    
+                </tr>              
+                <tr *ngIf="scoresDialog.length>=2">
+                    <td>Time 2</td>
+                    <td>
+                        <div class="d-flex align-items-center col-md-1">
+                            <input name="team12" [(ngModel)]="scoresDialog[1].team1" required #team12="ngModel">
+                        </div>
+                    </td>
+                    <td >
+                        <div class="d-flex align-items-center col-md-1">
+                            <input name="team22" [(ngModel)]="scoresDialog[1].team2" required #team22="ngModel">
+                        </div>
+                    </td>
+                    
+                </tr> 
+                <tr *ngIf="scoresDialog.length>=3">
+                    <td>Time 3</td>
+                    <td>
+                        <div class="d-flex align-items-center col-md-1">
+                            <input name="team13" [(ngModel)]="scoresDialog[2].team1" required #team13="ngModel">
+                        </div>
+                    </td>
+                    <td >
+                        <div class="d-flex align-items-center col-md-1">
+                            <input name="team23" [(ngModel)]="scoresDialog[2].team2" required #team23="ngModel">
+                        </div>
+                    </td>
+                </tr> 
+            </tbody>
+        </table>
+    </div>
+
+
+        <div class="row">
+          <div class="col-md-6">
+            <button class="btn btn-light-success"(click)="onNoClick()">Cancel</button>
+          </div>
+          <div class="col-md-6">
+              <button class="btn btn-light-success" (click)="createScore()">Add</button>
+          </div>
+        </div>
+  </div>

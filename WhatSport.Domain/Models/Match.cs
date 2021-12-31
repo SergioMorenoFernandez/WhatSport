@@ -7,7 +7,8 @@ namespace WhatSport.Domain.Models
     {
         public int Id { get; set; }
         public DateTime DateStart { get; set; } = DateTime.Now;
-        public DateTime DateEnd { get; set; } = DateTime.Now;
+        public int TimeInMinutes { get; set; }
+        //public DateTime DateEnd { get; set; } = DateTime.Now;
         public string OtherPlace { get; set; } = string.Empty;
         public string Note { get; set; } = string.Empty;
 

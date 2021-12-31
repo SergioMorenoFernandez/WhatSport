@@ -18,20 +18,35 @@ namespace WhatSport.Application.Commands.Scores
         public async Task<bool> Handle(ScoreConfirmationCommand request, CancellationToken cancellationToken)
         {
 
-            var player = repositoryPlayer.GetPlayerByMatchAndUserAsync(request.UserId, request.MatchId);
+            var player = await  repositoryPlayer.GetPlayerByMatchAndUserAsync(request.UserId, request.MatchId);
+
+            if (player == null)
+            {
+                throw new ApplicationException("This user does not belong to this match.");
+            }
 
             var scores = await repository.GetScoresAsync(request.MatchId, cancellationToken);
 
-            foreach(var score in scores)
+            if (scores == default || !scores.Any())
             {
+                throw new ApplicationException("There are not results to this match!");
+            }
+
+            foreach (var score in scores)
+            {
+                if(score.ScoreConfirmations.Any(x => x.PlayerId == player.Id))
+                {
+                    throw new ApplicationException("This user already confirmed the match");
+                }
+                
                 var value = new ScoreConfirmation
                 {
                     ScoreId = score.Id,
                     Confirmed=true,
                     PlayerId = player.Id
                 };
-
                 await repository.AddScoreConfirmationAsync(value, cancellationToken);
+                
             }
 
             return await repository.UnitOfWork.SaveChangesAsync(cancellationToken);

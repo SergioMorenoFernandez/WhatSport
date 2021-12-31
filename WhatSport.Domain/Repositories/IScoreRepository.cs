@@ -13,5 +13,6 @@ namespace WhatSport.Domain.Repositories
         Task AddScoreConfirmationAsync(ScoreConfirmation value, CancellationToken cancellationToken = default);
 
         Task<IEnumerable<Score>> GetScoresAsync(int matchId, CancellationToken cancellationToken = default);
+
     }
 }

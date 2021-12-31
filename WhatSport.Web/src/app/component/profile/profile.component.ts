@@ -9,7 +9,7 @@ import { User } from '../../Models/User';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
   currentUser: User=<User>{};

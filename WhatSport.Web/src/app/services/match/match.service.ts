@@ -7,7 +7,8 @@ import { Player } from '../../Models/Player';
 
 import { environment } from '../../../environments/environment';
 import { ErrorHandlingService } from '../errorHandling/errorHandling.service';
-import { Equipment } from '../..//Models/Equipment';
+import { Equipment } from '../../Models/Equipment';
+import { Score } from '../../Models/Score';
 
 const apiURL = environment.apiURL + '/match';
 
@@ -19,6 +20,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class MatchService {
+  
 
   constructor(
     private http: HttpClient,
@@ -72,6 +74,13 @@ export class MatchService {
     );
   }
 
+  createMatch(dateStart: Date, timeInMinutes:number, sportId: number, otherplace: string, note: string ):  Observable<any> {
+    
+    return this.http.post(`${apiURL}`,{dateStart, timeInMinutes, sportId, otherplace, note }, httpOptions).pipe(
+      catchError(this.errorHandlingService.handleError<any>('createMatch', []))
+    );
+  }
+
   getEquipments(matchId: number): Observable<Equipment[]> {
 
     return this.http.get<Equipment[]>(`${apiURL}/${matchId}/equipment`,httpOptions).pipe(
@@ -111,6 +120,36 @@ export class MatchService {
       catchError(this.handleError<any>('unjoinMatch', []))
     );
   }
+
+  getScores(matchId: number): Observable<Score[]> {
+
+    return this.http.get<Score[]>(`${apiURL}/${matchId}/score`,httpOptions).pipe(
+      tap(x => x.length ?
+        console.log(`found score with params ("${matchId}")`) :
+        console.log(`no score found with params ("${matchId}")`)),
+      catchError(this.handleError<Score[]>('getScores', []))
+    );
+  }
+
+  createScore(value: number, number: number, team:number, matchId: number):  Observable<any> {
+    return this.http.post(`${apiURL}/${matchId}/score`,{value,number,team} , httpOptions).pipe(
+      catchError(this.errorHandlingService.handleError<any>('createEquipment', []))
+    );
+  }
+
+  confirmScore(matchId: number):  Observable<any> {
+    return this.http.put(`${apiURL}/${matchId}/score/confirm`, httpOptions).pipe(
+      catchError(this.errorHandlingService.handleError<any>('confirmScore', []))
+    )};
+
+    
+  getScoresConfirmations(matchId: number): Observable<number> {
+
+    return this.http.get<number>(`${apiURL}/${matchId}/score/confirm`,httpOptions).pipe(
+      catchError(this.errorHandlingService.handleError<any>('getScoresConfirmations', []))
+    )};
+  
+
   
   /**
    * Handle Http operation that failed.

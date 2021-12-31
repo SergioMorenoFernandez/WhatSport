@@ -4,6 +4,7 @@ import { ClubsComponent } from './clubs/clubs.component';
 import { FriendsComponent } from './friends/friends.component';
 import { CardMatchComponent } from './card-match/card-match.component';
 import { MatchDetailComponent } from './match-detail/match-detail.component';
+import { NewMatchComponent } from './matches/new-match/new-match.component';
 
 
 export const ComponentsRoutes: Routes = [
@@ -25,6 +26,10 @@ export const ComponentsRoutes: Routes = [
 			{
 				path: 'friends',
 				component: FriendsComponent
+			},
+			{
+				path: 'match/new',
+				component: NewMatchComponent
 			},
 			{
 				path: 'match/:id',

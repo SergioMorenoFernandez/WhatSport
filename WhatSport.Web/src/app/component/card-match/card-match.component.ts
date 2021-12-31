@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-card-match',
   templateUrl: './card-match.component.html',
-  styleUrls: ['./card-match.component.css']
+  styleUrls: ['./card-match.component.scss']
 })
 export class CardMatchComponent implements OnInit {
   @Input() matchId: number=0;

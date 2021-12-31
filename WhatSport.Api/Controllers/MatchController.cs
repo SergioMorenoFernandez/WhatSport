@@ -8,6 +8,7 @@ using WhatSport.Application.Commands.Scores;
 using WhatSport.Application.Models;
 using WhatSport.Application.Queries.Equipments;
 using WhatSport.Application.Queries.Matches;
+using WhatSport.Application.Queries.Scores;
 using WhatSport.Domain.Extensions;
 
 namespace WhatSport.Api.Controllers
@@ -80,7 +81,7 @@ namespace WhatSport.Api.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<bool>> Post([FromBody] CreateMatchCommand command)
+        public async Task<ActionResult<int>> Post([FromBody] CreateMatchCommand command)
         {
             logger.LogInformation(
                "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
@@ -227,7 +228,26 @@ namespace WhatSport.Api.Controllers
 
         }
 
-        [HttpPut("{matchId}/score/Confirm")]
+
+        [HttpGet("{matchid}/score")]
+        public async Task<ActionResult<ScoreDto[]>> GetScores([FromRoute] int matchid)
+        {
+
+            var query = new ScoreQuery(matchid);
+
+            logger.LogInformation(
+               "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
+               query.GetGenericTypeName(),
+               nameof(query.MatchId),
+               query.MatchId,
+               query);
+
+
+            return await mediator.Send(query);
+
+        }
+
+        [HttpPut("{matchId}/score/confirm")]
         public async Task<ActionResult<bool>> ConfirmScore([FromRoute] int matchId)
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
@@ -242,6 +262,24 @@ namespace WhatSport.Api.Controllers
 
 
             return await mediator.Send(command);
+
+        }
+
+        [HttpGet("{matchId}/score/confirm")]
+        public async Task<ActionResult<int>> GetConfirmScore([FromRoute] int matchId)
+        {
+            var query = new ScoreConfirmationQuery(matchId);
+
+            logger.LogInformation(
+               "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",
+               query.GetGenericTypeName(),
+               nameof(query.MatchId),
+               query.MatchId,
+               query);
+
+
+            return await mediator.Send(query);
+
 
         }
 

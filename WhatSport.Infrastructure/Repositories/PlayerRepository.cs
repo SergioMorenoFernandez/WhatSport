@@ -43,14 +43,14 @@ namespace WhatSport.Infrastructure.Repositories
             context.Remove(value);
         }
 
-        public async Task<Player> GetPlayerByMatchAndUserAsync(int userId, int matchId, CancellationToken cancellationToken = default)
+        public async Task<Player?> GetPlayerByMatchAndUserAsync(int userId, int matchId, CancellationToken cancellationToken = default)
         {
             return await context.Players
                             .Include(c => c.User)
                             .Include(c => c.Match)
                             .AsNoTracking()
                             .Where(c => c.MatchId == matchId && c.UserId == userId)
-                            .SingleAsync(cancellationToken);
+                            .SingleOrDefaultAsync(cancellationToken);
         }
     }
 }

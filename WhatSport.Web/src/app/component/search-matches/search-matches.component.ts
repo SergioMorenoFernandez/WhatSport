@@ -8,7 +8,7 @@ import { FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-search-matches',
   templateUrl: './search-matches.component.html',
-  styleUrls: ['./search-matches.component.css']
+  styleUrls: ['./search-matches.component.scss']
 })
 export class SearchMatchesComponent  implements OnInit {
   @Input() userId?: number;

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { TokenStorageService } from '../../services/tokenStorage/token-storage.service';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-matches',
   templateUrl: './matches.component.html',
@@ -10,11 +12,17 @@ import { TokenStorageService } from '../../services/tokenStorage/token-storage.s
 export class MatchesComponent implements OnInit {
   currentUser:any;
 
-  constructor(private token: TokenStorageService,) {}
+  constructor(public router: Router, private token: TokenStorageService,) {}
 
   ngOnInit(): void 
   {
     this.currentUser = this.token.getUser();
+  }
+
+  
+  goToNewMatch(): void
+  {
+    this.router.navigate([`/component/match/new`]);
   }
 
 }
