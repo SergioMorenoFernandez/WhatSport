@@ -10,14 +10,14 @@ export const ROUTES: RouteInfo[] = [
     extralink: false,
     submenu: []
   },
-  {
-    path: '/component/club',
-    title: 'Club',
-    icon: 'bi bi-patch-check',
-    class: '',
-    extralink: false,
-    submenu: []
-  },
+  // {
+  //   path: '/component/club',
+  //   title: 'Club',
+  //   icon: 'bi bi-patch-check',
+  //   class: '',
+  //   extralink: false,
+  //   submenu: []
+  // },
   {
     path: '/component/match',
     title: 'Match',

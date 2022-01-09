@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WhatSport.Infrastructure;
 
@@ -11,9 +12,10 @@ using WhatSport.Infrastructure;
 namespace WhatSport.Api.Migrations
 {
     [DbContext(typeof(WhatSportContext))]
-    partial class WhatSportContextModelSnapshot : ModelSnapshot
+    [Migration("20220107174613_change user data")]
+    partial class changeuserdata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

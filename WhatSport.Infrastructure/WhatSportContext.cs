@@ -54,6 +54,7 @@ namespace WhatSport.Infrastructure
             ScoreSeeder.Seed(modelBuilder);
             ScoreConfirmationSeeder.Seed(modelBuilder);
             EquipmentSeeder.Seed(modelBuilder);
+            //FriendSeeder.Seed(modelBuilder);
         }
 
         async Task<bool> IUnitOfWork.SaveChangesAsync(CancellationToken cancellationToken)

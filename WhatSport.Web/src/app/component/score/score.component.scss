@@ -1,5 +1,5 @@
 button {
-    min-width: 100px;
+    min-width: 120px;
     width: 20%;
     text-transform: uppercase;
     letter-spacing: 0.15em;
@@ -14,4 +14,8 @@ button {
     box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
     cursor: pointer;
     margin-top: 1rem;
+  }
+
+  input{
+    width: 60px;
   }

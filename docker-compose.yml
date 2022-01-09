@@ -7,6 +7,12 @@ services:
       context: .
       dockerfile: WhatSport.Api/Dockerfile
 
+  #whatsport.Web:
+  #  image: ${DOCKER_REGISTRY-}whatsportweb
+  #  build:
+  #    context: .
+  #    dockerfile: WhatSport.Web/Docker/Dockerfile
+
   db:
     container_name: db-mssql
     image: mcr.microsoft.com/mssql/server:2019-latest

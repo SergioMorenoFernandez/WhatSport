@@ -33,7 +33,7 @@ export class EquipmentComponent implements OnInit {
     if(this.matchId)
     {
       this.matchService.getEquipments(this.matchId)
-        .subscribe(data => this.equipments=data);
+        .subscribe(data => this.equipments = data);
     }
   }
 

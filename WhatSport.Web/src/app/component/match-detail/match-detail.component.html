@@ -47,14 +47,14 @@
     </div>
     <hr/>
     <div class="row">
-      <div class="col-6">
-          <div class="card">
-            <div class="card-body">
-              <div class="col-md-3" *ngIf="sport">
-                <app-players [team]="1" [numPlayer]="sport.numberPlayers/2" [matchId]=match.id></app-players>
-              </div>
+      <div class="col-md-6" *ngIf="sport">
+        <div class="card">
+          <div class="card-body">
+            <div class="col-md-3" *ngIf="sport">
+              <app-players [team]="1" [numPlayer]="sport.numberPlayers/2" [matchId]=match.id></app-players>
             </div>
           </div>
+        </div>
       </div>
       <div class="col-md-6" *ngIf="sport">
         <div class="card">
@@ -65,15 +65,16 @@
           </div>
         </div>
       </div>
+      
+  </div>
     <hr/>
-    <div class="col-md-12" *ngIf="sport">
+    <!-- <div class="col-md-12" *ngIf="sport"> -->
       <app-equipment [matchId]=match.id></app-equipment>
-    </div>
+    <!-- </div> -->
     <hr/>
     <div class="col-md-12" *ngIf="sport">
       <app-score [matchId]=match.id [numTimes]="sport.numberTimes"></app-score>
     </div>
-  </div>
   
   
 </div>
